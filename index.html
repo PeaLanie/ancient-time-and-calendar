@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ancient time & Calendar</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="main">
+        <div class="time">
+          <div class="digital">
+            <div class="container">
+              <div class="seconds_arm">
+                  <div class="seconds"></div>
+                  <div></div>
+              </div>
+              <div class="minutes_arm">
+                  <div class="minutes">
+                      <div></div>
+                  </div>
+                  <div></div>
+              </div>
+              <div class="hours_arm">
+                  <div class="hours">
+                      <div></div>
+                  </div>
+                  <div></div>
+              </div>
+            </div>
+            <img src="img/clock2.0.png" alt="Clock" width="500">
+          </div>
+          <div class="clock-side-bar">
+            <p class="time-explaination">Now is the <span class="middle-hour"></span> <span class="time-discription"></span></p>
+            <img src="img/text1866.png" class="redgreen-text" alt="text">
+            <ul class="clockside-list">
+              <li>24-hrs full day is from Sunrise to Sunrise</li>
+              <li>Day-time is from sunrise to sunset</li>
+              <li>Night-time is from sunset to sunrise</li>
+            </ul>
+            <p class="clockside-notes">According to the Bible, a 24-hrs-day begins in the morning up to the next morning, approximately around 6 AM to 6 AM (Modern-time)
+            </p>
+            <p class="clockside-notes">Day-time (time when the sun is visible) is from sunrise (around 6-am) to sunset (around 6-pm)
+            </p>
+            <p class="clockside-notes">Night-time (time when the sun is invisible) is from sunset (around 6-pm) to sunrise (around 6-am)
+            </p>
+            <a href="#"><button class="clock-lesson-btn">Learn more about Biblical clock/times</button></a>
+          </div>
+        </div>
+        <h1>The Biblical Calendar</h1>
+        <div class="year-title">7000 - (the millennium + ?) + <span class="year"></span></div>
+        <div class="month-container" id="calendar">
+          <div class="month">
+            <h2 class="month-title">Month 1 - Abib</h2>
+            <div class="week-container">
+              <h3 class="day-title sunday" id="sunday-title">S</h3>
+              <h3 class="day-title monday" id="monday-title">M</h3>
+              <h3 class="day-title tuesday" id="tuesday-title">T</h3>
+              <h3 class="day-title wednesday" id="wednesday-title">W</h3>
+              <h3 class="day-title thursday" id="thursday-title">T</h3>
+              <h3 class="day-title friday" id="friday-title">F</h3>
+              <h3 class="day-title saturday" id="saturday-title">S</h3>
+            </div>
+            <div class="days-container">
+              <h4 class="h4-days none-days" id="day-29">29</h4>
+              <h4 class="h4-days none-days" id="day-30">30</h4>
+              <h4 class="h4-days none-days" id="day-31">31</h4>
+              <h4 class="h4-days head-of-the-year" id="day-1">1</h4>
+              <h4 class="h4-days" id="day-2">2</h4>
+              <h4 class="h4-days" id="day-3">3</h4>
+              <h4 class="h4-days" id="day-4">4</h4>
+              <h4 class="h4-days" id="day-5">5</h4>
+              <h4 class="h4-days" id="day-6">6</h4>
+              <h4 class="h4-days" id="day-7">7</h4>
+              <h4 class="h4-days" id="day-8">8</h4>
+              <h4 class="h4-days" id="day-9">9</h4>
+              <h4 class="h4-days" id="day-10">10</h4>
+              <h4 class="h4-days" id="day-11">11</h4>
+              <h4 class="h4-days" id="day-12">12</h4>
+              <h4 class="h4-days" id="day-13">13</h4>
+              <h4 class="h4-days feast-days passover" id="day-14">14</h4>
+              <h4 class="h4-days feast-days unleavened-bread" id="day-15">15</h4>
+              <h4 class="h4-days feast-days unleavened-bread" id="day-16">16</h4>
+              <h4 class="h4-days feast-days unleavened-bread" id="day-17">17</h4>
+              <h4 class="h4-days feast-days unleavened-bread" id="day-18">18</h4>
+              <h4 class="h4-days feast-days unleavened-bread" id="day-19">19</h4>
+              <h4 class="h4-days feast-days unleavened-bread" id="day-20">20</h4>
+              <h4 class="h4-days feast-days unleavened-bread" id="day-21">21</h4>
+              <h4 class="h4-days" id="day-22">22</h4>
+              <h4 class="h4-days" id="day-23">23</h4>
+              <h4 class="h4-days" id="day-24">24</h4>
+              <h4 class="h4-days" id="day-25">25</h4>
+              <h4 class="h4-days feast-days the-waving-of-the-sheaf" id="day-26">26</h4>
+              <h4 class="h4-days" id="day-27">27</h4>
+              <h4 class="h4-days" id="day-28">28</h4>
+              <h4 class="h4-days" id="day-29">29</h4>
+              <h4 class="h4-days" id="day-30">30</h4>
+              <h4 class="h4-days none-days" id="day-1">1</h4>
+              <h4 class="h4-days none-days" id="day-2">2</h4>
+            </div>
+          </div>
+          <div class="month">
+            <h2 class="month-title">Month 2 - Ziv</h2>
+            <div class="week-container">
+              <h3 class="day-title sunday" id="sunday-title">S</h3>
+              <h3 class="day-title monday" id="monday-title">M</h3>
+              <h3 class="day-title tuesday" id="tuesday-title">T</h3>
+              <h3 class="day-title wednesday" id="wednesday-title">W</h3>
+              <h3 class="day-title thursday" id="thursday-title">T</h3>
+              <h3 class="day-title friday" id="friday-title">F</h3>
+              <h3 class="day-title saturday" id="saturday-title">S</h3>
+            </div>
+            <div class="days-container">
+              <h4 class="h4-days none-days" id="day-26">26</h4>
+              <h4 class="h4-days none-days" id="day-27">27</h4>
+              <h4 class="h4-days none-days" id="day-28">28</h4>
+              <h4 class="h4-days none-days" id="day-29">29</h4>
+              <h4 class="h4-days none-days" id="day-30">30</h4>
+              <h4 class="h4-days" id="day-1">1</h4>
+              <h4 class="h4-days" id="day-2">2</h4>
+              <h4 class="h4-days" id="day-3">3</h4>
+              <h4 class="h4-days" id="day-4">4</h4>
+              <h4 class="h4-days" id="day-5">5</h4>
+              <h4 class="h4-days" id="day-6">6</h4>
+              <h4 class="h4-days" id="day-7">7</h4>
+              <h4 class="h4-days" id="day-8">8</h4>
+              <h4 class="h4-days" id="day-9">9</h4>
+              <h4 class="h4-days" id="day-10">10</h4>
+              <h4 class="h4-days" id="day-11">11</h4>
+              <h4 class="h4-days" id="day-12">12</h4>
+              <h4 class="h4-days" id="day-13">13</h4>
+              <h4 class="h4-days" id="day-14">14</h4>
+              <h4 class="h4-days" id="day-15">15</h4>
+              <h4 class="h4-days" id="day-16">16</h4>
+              <h4 class="h4-days" id="day-17">17</h4>
+              <h4 class="h4-days" id="day-18">18</h4>
+              <h4 class="h4-days" id="day-19">19</h4>
+              <h4 class="h4-days" id="day-20">20</h4>
+              <h4 class="h4-days" id="day-21">21</h4>
+              <h4 class="h4-days" id="day-22">22</h4>
+              <h4 class="h4-days" id="day-23">23</h4>
+              <h4 class="h4-days" id="day-24">24</h4>
+              <h4 class="h4-days" id="day-25">25</h4>
+              <h4 class="h4-days" id="day-26">26</h4>
+              <h4 class="h4-days" id="day-27">27</h4>
+              <h4 class="h4-days" id="day-28">28</h4>
+              <h4 class="h4-days" id="day-29">29</h4>
+              <h4 class="h4-days" id="day-30">30</h4>
+            </div>
+          </div>
+          <div class="month">
+            <h2 class="month-title">Month 3 - Sivan</h2>
+            <div class="week-container">
+              <h3 class="day-title sunday" id="sunday-title">S</h3>
+              <h3 class="day-title monday" id="monday-title">M</h3>
+              <h3 class="day-title tuesday" id="tuesday-title">T</h3>
+              <h3 class="day-title wednesday" id="wednesday-title">W</h3>
+              <h3 class="day-title thursday" id="thursday-title">T</h3>
+              <h3 class="day-title friday" id="friday-title">F</h3>
+              <h3 class="day-title saturday" id="saturday-title">S</h3>
+            </div>
+            <div class="days-container">
+                <h4 class="h4-days" id="day-1">1</h4>
+                <h4 class="h4-days" id="day-2">2</h4>
+                <h4 class="h4-days" id="day-3">3</h4>
+                <h4 class="h4-days" id="day-4">4</h4>
+                <h4 class="h4-days" id="day-5">5</h4>
+                <h4 class="h4-days" id="day-6">6</h4>
+                <h4 class="h4-days" id="day-7">7</h4>
+                <h4 class="h4-days" id="day-8">8</h4>
+                <h4 class="h4-days" id="day-9">9</h4>
+                <h4 class="h4-days" id="day-10">10</h4>
+                <h4 class="h4-days" id="day-11">11</h4>
+                <h4 class="h4-days" id="day-12">12</h4>
+                <h4 class="h4-days" id="day-13">13</h4>
+                <h4 class="h4-days" id="day-14">14</h4>
+                <h4 class="h4-days feast-days shavuot" id="day-15">15</h4>
+                <h4 class="h4-days" id="day-16">16</h4>
+                <h4 class="h4-days" id="day-17">17</h4>
+                <h4 class="h4-days" id="day-18">18</h4>
+                <h4 class="h4-days" id="day-19">19</h4>
+                <h4 class="h4-days" id="day-20">20</h4>
+                <h4 class="h4-days" id="day-21">21</h4>
+                <h4 class="h4-days" id="day-22">22</h4>
+                <h4 class="h4-days" id="day-23">23</h4>
+                <h4 class="h4-days" id="day-24">24</h4>
+                <h4 class="h4-days" id="day-25">25</h4>
+                <h4 class="h4-days" id="day-26">26</h4>
+                <h4 class="h4-days" id="day-27">27</h4>
+                <h4 class="h4-days" id="day-28">28</h4>
+                <h4 class="h4-days" id="day-29">29</h4>
+                <h4 class="h4-days" id="day-30">30</h4>
+                <h4 class="h4-days" id="day-31">31</h4>
+                <h4 class="h4-days none-days" id="day-1">1</h4>
+                <h4 class="h4-days none-days" id="day-2">2</h4>
+                <h4 class="h4-days none-days" id="day-3">3</h4>
+                <h4 class="h4-days none-days" id="day-4">4</h4>
+            </div>
+          </div>
+          <div class="month">
+            <h2 class="month-title">Month 4</h2>
+            <div class="week-container">
+              <h3 class="day-title sunday" id="sunday-title">S</h3>
+              <h3 class="day-title monday" id="monday-title">M</h3>
+              <h3 class="day-title tuesday" id="tuesday-title">T</h3>
+              <h3 class="day-title wednesday" id="wednesday-title">W</h3>
+              <h3 class="day-title thursday" id="thursday-title">T</h3>
+              <h3 class="day-title friday" id="friday-title">F</h3>
+              <h3 class="day-title saturday" id="saturday-title">S</h3>
+            </div>
+            <div class="days-container">
+              <h4 class="h4-days none-days" id="day-29">29</h4>
+              <h4 class="h4-days none-days" id="day-30">30</h4>
+              <h4 class="h4-days none-days" id="day-31">31</h4>
+              <h4 class="h4-days" id="day-1">1</h4>
+              <h4 class="h4-days" id="day-2">2</h4>
+              <h4 class="h4-days" id="day-3">3</h4>
+              <h4 class="h4-days" id="day-4">4</h4>
+              <h4 class="h4-days" id="day-5">5</h4>
+              <h4 class="h4-days" id="day-6">6</h4>
+              <h4 class="h4-days" id="day-7">7</h4>
+              <h4 class="h4-days" id="day-8">8</h4>
+              <h4 class="h4-days" id="day-9">9</h4>
+              <h4 class="h4-days" id="day-10">10</h4>
+              <h4 class="h4-days" id="day-11">11</h4>
+              <h4 class="h4-days" id="day-12">12</h4>
+              <h4 class="h4-days" id="day-13">13</h4>
+              <h4 class="h4-days" id="day-14">14</h4>
+              <h4 class="h4-days" id="day-15">15</h4>
+              <h4 class="h4-days" id="day-16">16</h4>
+              <h4 class="h4-days" id="day-17">17</h4>
+              <h4 class="h4-days" id="day-18">18</h4>
+              <h4 class="h4-days" id="day-19">19</h4>
+              <h4 class="h4-days" id="day-20">20</h4>
+              <h4 class="h4-days" id="day-21">21</h4>
+              <h4 class="h4-days" id="day-22">22</h4>
+              <h4 class="h4-days" id="day-23">23</h4>
+              <h4 class="h4-days" id="day-24">24</h4>
+              <h4 class="h4-days" id="day-25">25</h4>
+              <h4 class="h4-days" id="day-26">26</h4>
+              <h4 class="h4-days" id="day-27">27</h4>
+              <h4 class="h4-days" id="day-28">28</h4>
+              <h4 class="h4-days" id="day-29">29</h4>
+              <h4 class="h4-days" id="day-30">30</h4>
+              <h4 class="h4-days none-days" id="day-1">1</h4>
+              <h4 class="h4-days none-days" id="day-2">2</h4>
+            </div>
+          </div>
+          <div class="month">
+            <h2 class="month-title">Month 5</h2>
+            <div class="week-container">
+              <h3 class="day-title sunday" id="sunday-title">S</h3>
+              <h3 class="day-title monday" id="monday-title">M</h3>
+              <h3 class="day-title tuesday" id="tuesday-title">T</h3>
+              <h3 class="day-title wednesday" id="wednesday-title">W</h3>
+              <h3 class="day-title thursday" id="thursday-title">T</h3>
+              <h3 class="day-title friday" id="friday-title">F</h3>
+              <h3 class="day-title saturday" id="saturday-title">S</h3>
+            </div>
+            <div class="days-container">
+              <h4 class="h4-days none-days" id="day-26">26</h4>
+              <h4 class="h4-days none-days" id="day-27">27</h4>
+              <h4 class="h4-days none-days" id="day-28">28</h4>
+              <h4 class="h4-days none-days" id="day-29">29</h4>
+              <h4 class="h4-days none-days" id="day-30">30</h4>
+              <h4 class="h4-days" id="day-1">1</h4>
+              <h4 class="h4-days" id="day-2">2</h4>
+              <h4 class="h4-days" id="day-3">3</h4>
+              <h4 class="h4-days" id="day-4">4</h4>
+              <h4 class="h4-days" id="day-5">5</h4>
+              <h4 class="h4-days" id="day-6">6</h4>
+              <h4 class="h4-days" id="day-7">7</h4>
+              <h4 class="h4-days" id="day-8">8</h4>
+              <h4 class="h4-days" id="day-9">9</h4>
+              <h4 class="h4-days" id="day-10">10</h4>
+              <h4 class="h4-days" id="day-11">11</h4>
+              <h4 class="h4-days" id="day-12">12</h4>
+              <h4 class="h4-days" id="day-13">13</h4>
+              <h4 class="h4-days" id="day-14">14</h4>
+              <h4 class="h4-days" id="day-15">15</h4>
+              <h4 class="h4-days" id="day-16">16</h4>
+              <h4 class="h4-days" id="day-17">17</h4>
+              <h4 class="h4-days" id="day-18">18</h4>
+              <h4 class="h4-days" id="day-19">19</h4>
+              <h4 class="h4-days" id="day-20">20</h4>
+              <h4 class="h4-days" id="day-21">21</h4>
+              <h4 class="h4-days" id="day-22">22</h4>
+              <h4 class="h4-days" id="day-23">23</h4>
+              <h4 class="h4-days" id="day-24">24</h4>
+              <h4 class="h4-days" id="day-25">25</h4>
+              <h4 class="h4-days" id="day-26">26</h4>
+              <h4 class="h4-days" id="day-27">27</h4>
+              <h4 class="h4-days" id="day-28">28</h4>
+              <h4 class="h4-days" id="day-29">29</h4>
+              <h4 class="h4-days" id="day-30">30</h4>
+            </div>
+          </div>
+          <div class="month">
+            <h2 class="month-title">Month 6</h2>
+            <div class="week-container">
+              <h3 class="day-title sunday" id="sunday-title">S</h3>
+              <h3 class="day-title monday" id="monday-title">M</h3>
+              <h3 class="day-title tuesday" id="tuesday-title">T</h3>
+              <h3 class="day-title wednesday" id="wednesday-title">W</h3>
+              <h3 class="day-title thursday" id="thursday-title">T</h3>
+              <h3 class="day-title friday" id="friday-title">F</h3>
+              <h3 class="day-title saturday" id="saturday-title">S</h3>
+            </div>
+            <div class="days-container">
+                <h4 class="h4-days" id="day-1">1</h4>
+                <h4 class="h4-days" id="day-2">2</h4>
+                <h4 class="h4-days" id="day-3">3</h4>
+                <h4 class="h4-days" id="day-4">4</h4>
+                <h4 class="h4-days" id="day-5">5</h4>
+                <h4 class="h4-days" id="day-6">6</h4>
+                <h4 class="h4-days" id="day-7">7</h4>
+                <h4 class="h4-days" id="day-8">8</h4>
+                <h4 class="h4-days" id="day-9">9</h4>
+                <h4 class="h4-days" id="day-10">10</h4>
+                <h4 class="h4-days" id="day-11">11</h4>
+                <h4 class="h4-days" id="day-12">12</h4>
+                <h4 class="h4-days" id="day-13">13</h4>
+                <h4 class="h4-days" id="day-14">14</h4>
+                <h4 class="h4-days special-day" id="day-15">15</h4>
+                <h4 class="h4-days" id="day-16">16</h4>
+                <h4 class="h4-days" id="day-17">17</h4>
+                <h4 class="h4-days" id="day-18">18</h4>
+                <h4 class="h4-days" id="day-19">19</h4>
+                <h4 class="h4-days" id="day-20">20</h4>
+                <h4 class="h4-days" id="day-21">21</h4>
+                <h4 class="h4-days" id="day-22">22</h4>
+                <h4 class="h4-days" id="day-23">23</h4>
+                <h4 class="h4-days" id="day-24">24</h4>
+                <h4 class="h4-days" id="day-25">25</h4>
+                <h4 class="h4-days" id="day-26">26</h4>
+                <h4 class="h4-days" id="day-27">27</h4>
+                <h4 class="h4-days" id="day-28">28</h4>
+                <h4 class="h4-days" id="day-29">29</h4>
+                <h4 class="h4-days" id="day-30">30</h4>
+                <h4 class="h4-days" id="day-31">31</h4>
+                <h4 class="h4-days none-days" id="day-1">1</h4>
+                <h4 class="h4-days none-days" id="day-2">2</h4>
+                <h4 class="h4-days none-days" id="day-3">3</h4>
+                <h4 class="h4-days none-days" id="day-4">4</h4>
+            </div>
+          </div>
+          <div class="month">
+            <h2 class="month-title">Month 7 - Ethanim</h2>
+            <div class="week-container">
+              <h3 class="day-title sunday" id="sunday-title">S</h3>
+              <h3 class="day-title monday" id="monday-title">M</h3>
+              <h3 class="day-title tuesday" id="tuesday-title">T</h3>
+              <h3 class="day-title wednesday" id="wednesday-title">W</h3>
+              <h3 class="day-title thursday" id="thursday-title">T</h3>
+              <h3 class="day-title friday" id="friday-title">F</h3>
+              <h3 class="day-title saturday" id="saturday-title">S</h3>
+            </div>
+            <div class="days-container">
+              <h4 class="h4-days none-days" id="day-29">29</h4>
+              <h4 class="h4-days none-days" id="day-30">30</h4>
+              <h4 class="h4-days none-days" id="day-31">31</h4>
+              <h4 class="h4-days feast-days day-of-trumpets" id="day-1">1</h4>
+              <h4 class="h4-days" id="day-2">2</h4>
+              <h4 class="h4-days" id="day-3">3</h4>
+              <h4 class="h4-days" id="day-4">4</h4>
+              <h4 class="h4-days" id="day-5">5</h4>
+              <h4 class="h4-days" id="day-6">6</h4>
+              <h4 class="h4-days" id="day-7">7</h4>
+              <h4 class="h4-days" id="day-8">8</h4>
+              <h4 class="h4-days feast-days day-of-atonement" id="day-9">9</h4>
+              <h4 class="h4-days feast-days day-of-atonement" id="day-10">10</h4>
+              <h4 class="h4-days" id="day-11">11</h4>
+              <h4 class="h4-days" id="day-12">12</h4>
+              <h4 class="h4-days" id="day-13">13</h4>
+              <h4 class="h4-days" id="day-14">14</h4>
+              <h4 class="h4-days feast-days tabernacles" id="day-15">15</h4>
+              <h4 class="h4-days feast-days tabernacles" id="day-16">16</h4>
+              <h4 class="h4-days feast-days tabernacles" id="day-17">17</h4>
+              <h4 class="h4-days feast-days tabernacles" id="day-18">18</h4>
+              <h4 class="h4-days feast-days tabernacles" id="day-19">19</h4>
+              <h4 class="h4-days feast-days tabernacles" id="day-20">20</h4>
+              <h4 class="h4-days feast-days tabernacles" id="day-21">21</h4>
+              <h4 class="h4-days" id="day-22">22</h4>
+              <h4 class="h4-days" id="day-23">23</h4>
+              <h4 class="h4-days" id="day-24">24</h4>
+              <h4 class="h4-days" id="day-25">25</h4>
+              <h4 class="h4-days" id="day-26">26</h4>
+              <h4 class="h4-days" id="day-27">27</h4>
+              <h4 class="h4-days" id="day-28">28</h4>
+              <h4 class="h4-days" id="day-29">29</h4>
+              <h4 class="h4-days" id="day-30">30</h4>
+              <h4 class="h4-days none-days" id="day-1">1</h4>
+              <h4 class="h4-days none-days" id="day-2">2</h4>
+            </div>
+          </div>
+          <div class="month">
+            <h2 class="month-title">Month 8 - Bul</h2>
+            <div class="week-container">
+              <h3 class="day-title sunday" id="sunday-title">S</h3>
+              <h3 class="day-title monday" id="monday-title">M</h3>
+              <h3 class="day-title tuesday" id="tuesday-title">T</h3>
+              <h3 class="day-title wednesday" id="wednesday-title">W</h3>
+              <h3 class="day-title thursday" id="thursday-title">T</h3>
+              <h3 class="day-title friday" id="friday-title">F</h3>
+              <h3 class="day-title saturday" id="saturday-title">S</h3>
+            </div>
+            <div class="days-container">
+              <h4 class="h4-days none-days" id="day-26">26</h4>
+              <h4 class="h4-days none-days" id="day-27">27</h4>
+              <h4 class="h4-days none-days" id="day-28">28</h4>
+              <h4 class="h4-days none-days" id="day-29">29</h4>
+              <h4 class="h4-days none-days" id="day-30">30</h4>
+              <h4 class="h4-days" id="day-1">1</h4>
+              <h4 class="h4-days" id="day-2">2</h4>
+              <h4 class="h4-days" id="day-3">3</h4>
+              <h4 class="h4-days" id="day-4">4</h4>
+              <h4 class="h4-days" id="day-5">5</h4>
+              <h4 class="h4-days" id="day-6">6</h4>
+              <h4 class="h4-days" id="day-7">7</h4>
+              <h4 class="h4-days" id="day-8">8</h4>
+              <h4 class="h4-days" id="day-9">9</h4>
+              <h4 class="h4-days" id="day-10">10</h4>
+              <h4 class="h4-days" id="day-11">11</h4>
+              <h4 class="h4-days" id="day-12">12</h4>
+              <h4 class="h4-days" id="day-13">13</h4>
+              <h4 class="h4-days" id="day-14">14</h4>
+              <h4 class="h4-days" id="day-15">15</h4>
+              <h4 class="h4-days" id="day-16">16</h4>
+              <h4 class="h4-days" id="day-17">17</h4>
+              <h4 class="h4-days" id="day-18">18</h4>
+              <h4 class="h4-days" id="day-19">19</h4>
+              <h4 class="h4-days" id="day-20">20</h4>
+              <h4 class="h4-days" id="day-21">21</h4>
+              <h4 class="h4-days" id="day-22">22</h4>
+              <h4 class="h4-days" id="day-23">23</h4>
+              <h4 class="h4-days" id="day-24">24</h4>
+              <h4 class="h4-days" id="day-25">25</h4>
+              <h4 class="h4-days" id="day-26">26</h4>
+              <h4 class="h4-days" id="day-27">27</h4>
+              <h4 class="h4-days" id="day-28">28</h4>
+              <h4 class="h4-days" id="day-29">29</h4>
+              <h4 class="h4-days" id="day-30">30</h4>
+            </div>
+          </div>
+          <div class="month">
+            <h2 class="month-title">Month 9</h2>
+            <div class="week-container">
+              <h3 class="day-title sunday" id="sunday-title">S</h3>
+              <h3 class="day-title monday" id="monday-title">M</h3>
+              <h3 class="day-title tuesday" id="tuesday-title">T</h3>
+              <h3 class="day-title wednesday" id="wednesday-title">W</h3>
+              <h3 class="day-title thursday" id="thursday-title">T</h3>
+              <h3 class="day-title friday" id="friday-title">F</h3>
+              <h3 class="day-title saturday" id="saturday-title">S</h3>
+            </div>
+            <div class="days-container">
+                <h4 class="h4-days" id="day-1">1</h4>
+                <h4 class="h4-days" id="day-2">2</h4>
+                <h4 class="h4-days" id="day-3">3</h4>
+                <h4 class="h4-days" id="day-4">4</h4>
+                <h4 class="h4-days" id="day-5">5</h4>
+                <h4 class="h4-days" id="day-6">6</h4>
+                <h4 class="h4-days" id="day-7">7</h4>
+                <h4 class="h4-days" id="day-8">8</h4>
+                <h4 class="h4-days" id="day-9">9</h4>
+                <h4 class="h4-days" id="day-10">10</h4>
+                <h4 class="h4-days" id="day-11">11</h4>
+                <h4 class="h4-days" id="day-12">12</h4>
+                <h4 class="h4-days" id="day-13">13</h4>
+                <h4 class="h4-days" id="day-14">14</h4>
+                <h4 class="h4-days" id="day-15">15</h4>
+                <h4 class="h4-days" id="day-16">16</h4>
+                <h4 class="h4-days" id="day-17">17</h4>
+                <h4 class="h4-days" id="day-18">18</h4>
+                <h4 class="h4-days" id="day-19">19</h4>
+                <h4 class="h4-days" id="day-20">20</h4>
+                <h4 class="h4-days" id="day-21">21</h4>
+                <h4 class="h4-days" id="day-22">22</h4>
+                <h4 class="h4-days" id="day-23">23</h4>
+                <h4 class="h4-days" id="day-24">24</h4>
+                <h4 class="h4-days" id="day-25">25</h4>
+                <h4 class="h4-days" id="day-26">26</h4>
+                <h4 class="h4-days" id="day-27">27</h4>
+                <h4 class="h4-days" id="day-28">28</h4>
+                <h4 class="h4-days" id="day-29">29</h4>
+                <h4 class="h4-days" id="day-30">30</h4>
+                <h4 class="h4-days" id="day-31">31</h4>
+                <h4 class="h4-days none-days" id="day-1">1</h4>
+                <h4 class="h4-days none-days" id="day-2">2</h4>
+                <h4 class="h4-days none-days" id="day-3">3</h4>
+                <h4 class="h4-days none-days" id="day-4">4</h4>
+            </div>
+          </div>
+          <div class="month">
+            <h2 class="month-title">Month 10</h2>
+            <div class="week-container">
+              <h3 class="day-title sunday" id="sunday-title">S</h3>
+              <h3 class="day-title monday" id="monday-title">M</h3>
+              <h3 class="day-title tuesday" id="tuesday-title">T</h3>
+              <h3 class="day-title wednesday" id="wednesday-title">W</h3>
+              <h3 class="day-title thursday" id="thursday-title">T</h3>
+              <h3 class="day-title friday" id="friday-title">F</h3>
+              <h3 class="day-title saturday" id="saturday-title">S</h3>
+            </div>
+            <div class="days-container">
+              <h4 class="h4-days none-days" id="day-29">29</h4>
+              <h4 class="h4-days none-days" id="day-30">30</h4>
+              <h4 class="h4-days none-days" id="day-31">31</h4>
+              <h4 class="h4-days" id="day-1">1</h4>
+              <h4 class="h4-days" id="day-2">2</h4>
+              <h4 class="h4-days" id="day-3">3</h4>
+              <h4 class="h4-days" id="day-4">4</h4>
+              <h4 class="h4-days" id="day-5">5</h4>
+              <h4 class="h4-days" id="day-6">6</h4>
+              <h4 class="h4-days" id="day-7">7</h4>
+              <h4 class="h4-days" id="day-8">8</h4>
+              <h4 class="h4-days" id="day-9">9</h4>
+              <h4 class="h4-days" id="day-10">10</h4>
+              <h4 class="h4-days" id="day-11">11</h4>
+              <h4 class="h4-days" id="day-12">12</h4>
+              <h4 class="h4-days" id="day-13">13</h4>
+              <h4 class="h4-days" id="day-14">14</h4>
+              <h4 class="h4-days" id="day-15">15</h4>
+              <h4 class="h4-days" id="day-16">16</h4>
+              <h4 class="h4-days" id="day-17">17</h4>
+              <h4 class="h4-days" id="day-18">18</h4>
+              <h4 class="h4-days" id="day-19">19</h4>
+              <h4 class="h4-days" id="day-20">20</h4>
+              <h4 class="h4-days" id="day-21">21</h4>
+              <h4 class="h4-days" id="day-22">22</h4>
+              <h4 class="h4-days" id="day-23">23</h4>
+              <h4 class="h4-days" id="day-24">24</h4>
+              <h4 class="h4-days" id="day-25">25</h4>
+              <h4 class="h4-days" id="day-26">26</h4>
+              <h4 class="h4-days" id="day-27">27</h4>
+              <h4 class="h4-days" id="day-28">28</h4>
+              <h4 class="h4-days" id="day-29">29</h4>
+              <h4 class="h4-days" id="day-30">30</h4>
+              <h4 class="h4-days none-days" id="day-1">1</h4>
+              <h4 class="h4-days none-days" id="day-2">2</h4>
+            </div>
+          </div>
+          <div class="month">
+            <h2 class="month-title">Month 11</h2>
+            <div class="week-container">
+              <h3 class="day-title sunday" id="sunday-title">S</h3>
+              <h3 class="day-title monday" id="monday-title">M</h3>
+              <h3 class="day-title tuesday" id="tuesday-title">T</h3>
+              <h3 class="day-title wednesday" id="wednesday-title">W</h3>
+              <h3 class="day-title thursday" id="thursday-title">T</h3>
+              <h3 class="day-title friday" id="friday-title">F</h3>
+              <h3 class="day-title saturday" id="saturday-title">S</h3>
+            </div>
+            <div class="days-container">
+              <h4 class="h4-days none-days" id="day-26">26</h4>
+              <h4 class="h4-days none-days" id="day-27">27</h4>
+              <h4 class="h4-days none-days" id="day-28">28</h4>
+              <h4 class="h4-days none-days" id="day-29">29</h4>
+              <h4 class="h4-days none-days" id="day-30">30</h4>
+              <h4 class="h4-days" id="day-1">1</h4>
+              <h4 class="h4-days" id="day-2">2</h4>
+              <h4 class="h4-days" id="day-3">3</h4>
+              <h4 class="h4-days" id="day-4">4</h4>
+              <h4 class="h4-days" id="day-5">5</h4>
+              <h4 class="h4-days" id="day-6">6</h4>
+              <h4 class="h4-days" id="day-7">7</h4>
+              <h4 class="h4-days" id="day-8">8</h4>
+              <h4 class="h4-days" id="day-9">9</h4>
+              <h4 class="h4-days" id="day-10">10</h4>
+              <h4 class="h4-days" id="day-11">11</h4>
+              <h4 class="h4-days" id="day-12">12</h4>
+              <h4 class="h4-days" id="day-13">13</h4>
+              <h4 class="h4-days" id="day-14">14</h4>
+              <h4 class="h4-days" id="day-15">15</h4>
+              <h4 class="h4-days" id="day-16">16</h4>
+              <h4 class="h4-days" id="day-17">17</h4>
+              <h4 class="h4-days" id="day-18">18</h4>
+              <h4 class="h4-days" id="day-19">19</h4>
+              <h4 class="h4-days" id="day-20">20</h4>
+              <h4 class="h4-days" id="day-21">21</h4>
+              <h4 class="h4-days" id="day-22">22</h4>
+              <h4 class="h4-days" id="day-23">23</h4>
+              <h4 class="h4-days" id="day-24">24</h4>
+              <h4 class="h4-days" id="day-25">25</h4>
+              <h4 class="h4-days" id="day-26">26</h4>
+              <h4 class="h4-days" id="day-27">27</h4>
+              <h4 class="h4-days" id="day-28">28</h4>
+              <h4 class="h4-days" id="day-29">29</h4>
+              <h4 class="h4-days" id="day-30">30</h4>
+            </div>
+          </div>
+          <div class="month">
+            <h2 class="month-title">Month 12</h2>
+            <div class="week-container">
+              <h3 class="day-title sunday" id="sunday-title">S</h3>
+              <h3 class="day-title monday" id="monday-title">M</h3>
+              <h3 class="day-title tuesday" id="tuesday-title">T</h3>
+              <h3 class="day-title wednesday" id="wednesday-title">W</h3>
+              <h3 class="day-title thursday" id="thursday-title">T</h3>
+              <h3 class="day-title friday" id="friday-title">F</h3>
+              <h3 class="day-title saturday" id="saturday-title">S</h3>
+            </div>
+            <div class="days-container">
+                <h4 class="h4-days" id="day-1">1</h4>
+                <h4 class="h4-days" id="day-2">2</h4>
+                <h4 class="h4-days" id="day-3">3</h4>
+                <h4 class="h4-days" id="day-4">4</h4>
+                <h4 class="h4-days" id="day-5">5</h4>
+                <h4 class="h4-days" id="day-6">6</h4>
+                <h4 class="h4-days" id="day-7">7</h4>
+                <h4 class="h4-days" id="day-8">8</h4>
+                <h4 class="h4-days" id="day-9">9</h4>
+                <h4 class="h4-days" id="day-10">10</h4>
+                <h4 class="h4-days" id="day-11">11</h4>
+                <h4 class="h4-days" id="day-12">12</h4>
+                <h4 class="h4-days" id="day-13">13</h4>
+                <h4 class="h4-days" id="day-14">14</h4>
+                <h4 class="h4-days" id="day-15">15</h4>
+                <h4 class="h4-days" id="day-16">16</h4>
+                <h4 class="h4-days" id="day-17">17</h4>
+                <h4 class="h4-days" id="day-18">18</h4>
+                <h4 class="h4-days" id="day-19">19</h4>
+                <h4 class="h4-days" id="day-20">20</h4>
+                <h4 class="h4-days" id="day-21">21</h4>
+                <h4 class="h4-days" id="day-22">22</h4>
+                <h4 class="h4-days" id="day-23">23</h4>
+                <h4 class="h4-days" id="day-24">24</h4>
+                <h4 class="h4-days" id="day-25">25</h4>
+                <h4 class="h4-days" id="day-26">26</h4>
+                <h4 class="h4-days" id="day-27">27</h4>
+                <h4 class="h4-days" id="day-28">28</h4>
+                <h4 class="h4-days" id="day-29">29</h4>
+                <h4 class="h4-days" id="day-30">30</h4>
+                <h4 class="h4-days" id="day-31">31</h4>
+                <h4 class="h4-days none-days" id="day-1">1</h4>
+                <h4 class="h4-days none-days" id="day-2">2</h4>
+                <h4 class="h4-days none-days" id="day-3">3</h4>
+                <h4 class="h4-days none-days" id="day-4">4</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="side-bar">
+        <div class="sidebar-container">
+          <h2 class="sidebar-month-title"></h2>
+          <div class="daily-events">NO CURRENT EVENT ON THIS DAY</div>
+          <div class="sabbaths-count">
+            <p class="sabbath-days-count"></p>
+            <p class="special-sabbath-days-count"></p>
+          </div>
+          <h3 class="upcoming-events">Upcoming feast(s)</h3>
+          <ul class="events-container"></ul>
+        </div>
+      </div>
+    </div>
+    <script src="js.js"></script>
+  </body>
+</html>
