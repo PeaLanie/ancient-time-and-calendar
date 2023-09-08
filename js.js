@@ -38,7 +38,7 @@ for (let i = 0; i < data.length; i++) {
 
 let current_date = document.querySelector(".current-day")
 let year_el = document.querySelector(".year")
-let year_zero = 1693505023430
+let year_zero = 1693972800757 //06 Sep 2023 - 6am
 
 function daySeeker(arr, start_point, year_el) {
     let date = new Date()
@@ -46,24 +46,32 @@ function daySeeker(arr, start_point, year_el) {
     let milliseconds_from_year_zero = sec - start_point
     let milliseconds_per_day = 86400000
     let milliseconds_per_year = 31449600000
-    //console.log(milliseconds_from_year_zero/86400000)
-    let number_of_days_from_year_zero = Math.ceil(milliseconds_from_year_zero/milliseconds_per_day)+20
+    let number_of_days_from_year_zero = Math.ceil(milliseconds_from_year_zero/milliseconds_per_day)
     let year = Math.ceil(number_of_days_from_year_zero/arr.length)
-
+    
     if (number_of_days_from_year_zero > arr.length) {
         daySeeker(arr, start_point + milliseconds_per_year, year_el)
         year_el.textContent = year
     } else {
-        //console.log(milliseconds_from_year_zero/milliseconds_per_day)
+        let current_day = arr[number_of_days_from_year_zero - 1]
+        let prev_day = arr[number_of_days_from_year_zero - 2]
+        let current_month = arr[number_of_days_from_year_zero - 1].parentElement.parentElement.firstChild.nextSibling
         if (number_of_days_from_year_zero === 2) {
             arr[0].classList.remove("current-day")
-            arr[number_of_days_from_year_zero - 1].classList.add("current-day")
+            arr[0].parentElement.parentElement.firstChild.nextSibling.classList.remove("current-month")
+            current_day.classList.add("current-day")
+            current_month.classList.add("current-month")
         } else if (number_of_days_from_year_zero === 1) {
             arr[arr.length - 1].classList.remove("current-day")
-            arr[number_of_days_from_year_zero - 1].classList.add("current-day")
+            arr[arr.length - 1].parentElement.parentElement.firstChild.nextSibling.classList.remove("current-month")
+            current_day.classList.add("current-day")
+            current_month.classList.add("current-month")
         } else {
-            arr[number_of_days_from_year_zero - 2].classList.remove("current-day")
-            arr[number_of_days_from_year_zero - 1].classList.add("current-day")
+            let prev_month = arr[number_of_days_from_year_zero - 2].parentElement.parentElement.firstChild.nextSibling
+            prev_day.classList.remove("current-day")
+            prev_month.classList.remove("current-month")
+            current_day.classList.add("current-day")
+            current_month.classList.add("current-month")
         }
         year_el.textContent = year
     }
@@ -77,6 +85,7 @@ let month_notes = document.querySelector(".month-notes")
 let sabbath_days_count_el = document.querySelector(".sabbath-days-count")
 let special_sabbath_days_count_el = document.querySelector(".special-sabbath-days-count")
 let daily_events_el = document.querySelector(".daily-events")
+let no_upcoming_events_el = document.querySelector(".no-upcoming-events")
 
 
 feast_days = document.querySelectorAll(".feast-days")
@@ -94,7 +103,7 @@ real_days.forEach((day) => {
         let current_month_days = day.parentElement.children
         let sabbath_days = 0
         let special_sabbath_days = 0
-        
+        console.log(current_day)
         sidebar_month_title.textContent = `Day ${current_day.textContent} of ${current_month_title}`
         for (let i = 0; i < current_month_days.length; i++) {
 
@@ -107,6 +116,7 @@ real_days.forEach((day) => {
             }
 
             if (current_month_days[i].classList.contains("feast-days") && current_month_title === "Month 1 - Abib") {
+                no_upcoming_events_el.textContent = ""
                 if (current_month_days[i].classList.contains("passover")) {
                     if (current_month_days[i].textContent - day.textContent <= 0) {
                         if (current_month_days[i].textContent - day.textContent === 0) {
@@ -148,6 +158,7 @@ real_days.forEach((day) => {
                     }
                 }
             } else if (current_month_days[i].classList.contains("feast-days") && current_month_title === "Month 3 - Sivan") {
+                no_upcoming_events_el.textContent = ""
                 if (current_month_days[i].classList.contains("shavuot")) {
                     if (current_month_days[i].textContent - day.textContent <= 0) {
                         if (current_month_days[i].textContent - day.textContent === 0) {

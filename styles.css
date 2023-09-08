@@ -249,6 +249,12 @@ h1 {
       translate: 0 -6px;
       border: none;
   }
+  .current-month {
+    background: #ff00ff;
+      color: #fff;
+      translate: 0 -6px;
+      border: none;
+  }
 
 
   .sidebar-container {
@@ -278,6 +284,13 @@ h1 {
     font-style: italic;
     text-transform: uppercase;
     color: #800000;
+  }
+  .no-upcoming-events {
+    text-transform: uppercase;
+    font-style: italic;
+    font-weight: normal;
+    text-align: center;
+    padding-top: 1rem;
   }
   .events-container {
     padding: 1rem;
