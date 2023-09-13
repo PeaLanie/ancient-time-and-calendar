@@ -29,9 +29,10 @@ body {
 }
 .clockside-list {
   list-style-position: inside;
+  padding: 1rem 0;
 }
 .clockside-list > li {
-  padding-bottom: 1rem;
+  padding: 0.5rem 0;
 }
 .clockside-notes {
   font-style: italic;
@@ -39,13 +40,21 @@ body {
   padding-bottom: 1rem;
 }
 .clock-lesson-btn {
+  display: block;
   font-size: 1.3rem;
   padding: 1rem;
-  border: none;
   background: #333;
   border-radius: 6px;
+  margin-top: 1rem;
+  text-align: center;
+}
+.clock-lesson-btn:hover {
   color: #fff;
 }
+a {
+  color: #1b9e61;
+}
+
 
 
 h1 {
@@ -159,7 +168,9 @@ h1 {
 
 
 
-
+.clock-img {
+  z-index: 10;
+}
 .digital {
     display: flex;
     align-items: center;
@@ -172,8 +183,7 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 50%;
-    width: 100%;
+    height: 40%;
   }
   .container > div {
     position: absolute;
@@ -190,35 +200,35 @@ h1 {
   }
   .container > div .seconds {
     background: #008000;
-    border-radius: 2.5px;
+    border-radius: 1.5px;
   }
   .container > div .minutes div {
     background: #9c9c9c;
+    height: 80%;
+    width: 100%;
+    border-radius: 3px;
+  }
+  .container > div .hours div {
+    background: #ff0000;
     height: 60%;
     width: 100%;
     border-radius: 5px;
   }
-  .container > div .hours div {
-    background: #ff0000;
-    height: 40%;
-    width: 100%;
-    border-radius: 2px;
-  }
   .container .seconds_arm {
-    width: 1px;
-    border-radius: 1px;
+    width: 3px;
+    border-radius: 1.5px;
     z-index: 7;
     transition: transform 1090ms ease-in-out
   }
   .container .minutes_arm {
-    width: 3px;
-    border-radius: 1px;
+    width: 6px;
+    border-radius: 3px;
     z-index: 6;
     transition: transform 1000ms ease-in-out
   }
   .container .hours_arm {
-    width: 5px;
-    border-radius: 2px;
+    width: 10px;
+    border-radius: 5px;
     z-index: 5;
     transition: transform 1000ms ease-in-out
   }
@@ -244,16 +254,18 @@ h1 {
 
 
   .current-day {
-      background: #ff00ff;
-      color: #fff;
-      translate: 0 -6px;
-      border: none;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    background: #ff00ff;
+    color: #fff;
+    translate: 0 -6px;
+    border: none;
   }
   .current-month {
     background: #ff00ff;
-      color: #fff;
-      translate: 0 -6px;
-      border: none;
+    color: #fff;
+    translate: 0 -6px;
   }
 
 

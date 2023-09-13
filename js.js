@@ -1,54 +1,13 @@
-let dates = document.querySelectorAll(".days-container")
-
-dates.forEach((date) => {
-    let day = date.children
-    
-    for (let i = 0; i < 5; i++) {
-        let sundays = day[(i+1)*7-7]
-        let mondays = day[(i+1)*7-6]
-        let tuesdays = day[(i+1)*7-5]
-        let wednesdays = day[(i+1)*7-4]
-        let thursdays = day[(i+1)*7-3]
-        let fridays = day[(i+1)*7-2]
-        let sabbaths = day[(i+1)*7-1]
-        
-        if (sabbaths.className !== "h4-days none-days") {
-            sabbaths.classList.add("sabbath-days")
-        }
-        
-    }
-
-    for (let i = 0; i < day.length; i++) {
-        if (day[i].className !== "h4-days none-days") {
-            if (day[i].textContent == "31") {
-                day[i].classList.add("sign-days")
-            }
-        }
-    }
-})
-
-let data = document.querySelectorAll(".h4-days")
-let real_days = []
-
-for (let i = 0; i < data.length; i++) {
-    if (!data[i].className.includes("none-days")) {
-        real_days.push(data[i])
-    }
-}
-
-let current_date = document.querySelector(".current-day")
-let year_el = document.querySelector(".year")
-let year_zero = 1693972800757 //06 Sep 2023 - 6am
-
 function daySeeker(arr, start_point, year_el) {
+
     let date = new Date()
     let sec = date.getTime()
     let milliseconds_from_year_zero = sec - start_point
     let milliseconds_per_day = 86400000
     let milliseconds_per_year = 31449600000
     let number_of_days_from_year_zero = Math.ceil(milliseconds_from_year_zero/milliseconds_per_day)
+    console.log(number_of_days_from_year_zero)
     let year = Math.ceil(number_of_days_from_year_zero/arr.length)
-    
     if (number_of_days_from_year_zero > arr.length) {
         daySeeker(arr, start_point + milliseconds_per_year, year_el)
         year_el.textContent = year
@@ -76,25 +35,96 @@ function daySeeker(arr, start_point, year_el) {
         year_el.textContent = year
     }
 }
-daySeeker(real_days, year_zero, year_el)
 
+let dates = document.querySelectorAll(".days-container")
+
+let sundays_list = []
+let mondays_list = []
+let tuesdays_list = []
+let wednesdays_list = []
+let thursdays_list = []
+let fridays_list = []
+let sabbaths_list = []
+
+let real_days = []
+let data = document.querySelectorAll(".h4-days")
+let year_el = document.querySelector(".year")
+let year_zero = 1679457600757 //22 Mar 2023 - 6am
 let sidebar_month_title = document.querySelector(".sidebar-month-title")
 let events_container = document.querySelector(".events-container")
-let current_day = document.querySelector(".current-day")
 let month_notes = document.querySelector(".month-notes")
 let sabbath_days_count_el = document.querySelector(".sabbath-days-count")
 let special_sabbath_days_count_el = document.querySelector(".special-sabbath-days-count")
 let daily_events_el = document.querySelector(".daily-events")
 let no_upcoming_events_el = document.querySelector(".no-upcoming-events")
+let feast_days = document.querySelectorAll(".feast-days")
 
 
-feast_days = document.querySelectorAll(".feast-days")
-feast_days.forEach((day, i) => {
+dates.forEach((date) => {
+    let day = date.children
+    
+    for (let i = 0; i < 5; i++) {
+        let sundays = day[(i+1)*7-7]
+        let mondays = day[(i+1)*7-6]
+        let tuesdays = day[(i+1)*7-5]
+        let wednesdays = day[(i+1)*7-4]
+        let thursdays = day[(i+1)*7-3]
+        let fridays = day[(i+1)*7-2]
+        let sabbaths = day[(i+1)*7-1]
+        
+        sundays_list.push(sundays)
+        mondays_list.push(mondays)
+        tuesdays_list.push(tuesdays)
+        wednesdays_list.push(wednesdays)
+        thursdays_list.push(thursdays)
+        fridays_list.push(fridays)
+        sabbaths_list.push(sabbaths)
+
+        if (sabbaths.className !== "h4-days none-days") {
+            sabbaths.classList.add("sabbath-days")
+        }
+        
+    }
+    
+    for (let i = 0; i < day.length; i++) {
+        if (day[i].className !== "h4-days none-days") {
+            if (day[i].textContent == "31") {
+                day[i].classList.add("sign-days")
+            }
+        }
+    }
+})
+
+sundays_list = sundays_list.filter(day => !day.classList.contains("none-days"))
+mondays_list = mondays_list.filter(day => !day.classList.contains("none-days"))
+tuesdays_list = tuesdays_list.filter(day => !day.classList.contains("none-days"))
+wednesdays_list = wednesdays_list.filter(day => !day.classList.contains("none-days"))
+thursdays_list = thursdays_list.filter(day => !day.classList.contains("none-days"))
+fridays_list = fridays_list.filter(day => !day.classList.contains("none-days"))
+sabbaths_list = sabbaths_list.filter(day => !day.classList.contains("none-days"))
+
+for (let i = 0; i < data.length; i++) {
+    if (!data[i].className.includes("none-days")) {
+        real_days.push(data[i])
+    }
+}
+
+
+feast_days.forEach((day) => {
     if (day.textContent === "21" || day.textContent === "15" || day.textContent === "1" || day.textContent === "9") {
         day.classList.add("special-sabbaths")
     }
 })
 
+daySeeker(real_days, year_zero, year_el)
+let current_day = document.querySelector(".current-day")
+
+sundays_list.forEach((day, i) => {
+    sunday_count = i+1
+    if (day.classList.contains("current-day")) {
+        console.log(sunday_count)
+    }
+})
 
 real_days.forEach((day) => {
     
@@ -103,10 +133,10 @@ real_days.forEach((day) => {
         let current_month_days = day.parentElement.children
         let sabbath_days = 0
         let special_sabbath_days = 0
-        console.log(current_day)
+
         sidebar_month_title.textContent = `Day ${current_day.textContent} of ${current_month_title}`
         for (let i = 0; i < current_month_days.length; i++) {
-
+            
             if (current_month_days[i].classList.contains("sabbath-days")) {
                 sabbath_days++
                 sabbath_days_count_el.textContent = `Weekly Sabbaths: ${sabbath_days}`
@@ -173,12 +203,58 @@ real_days.forEach((day) => {
                         events_container.appendChild(list_item)
                     }
                 }
+            } else if (current_month_days[i].textContent == "15" && current_month_title == "Month 6") {
+                
+                if (current_day.textContent == "15") {
+                    daily_events_el.textContent = "this is a special date according to the bible, it the day sarah conceived Isaac"
+                }
+
+            } else if (current_month_days[i].classList.contains("feast-days") && current_month_title === "Month 7 - Ethanim") {
+                no_upcoming_events_el.textContent = ""
+                if (current_month_days[i].classList.contains("day-of-trumpets")) {
+                    if (current_month_days[i].textContent - day.textContent <= 0) {
+                        if (current_month_days[i].textContent - day.textContent === 0) {
+                            daily_events_el.textContent = "this is the day of trumpets"
+                        }
+                    } else {
+                        let list_item = document.createElement("li")
+                        list_item.textContent = `Day ${current_month_days[i].
+                        textContent} is the Day of Trumpets. (${current_month_days[i].
+                        textContent - day.textContent} days from now)`
+                        events_container.appendChild(list_item)
+                    }
+                } else if (current_month_days[i].classList.contains("day-of-atonement")) {
+                    if (current_month_days[i].textContent - day.textContent <= 0) {
+                        if (current_month_days[i].textContent - day.textContent === 0) {
+                            daily_events_el.textContent = "this is the day of atonement"
+                        }
+                    } else {
+                        let list_item = document.createElement("li")
+                        list_item.textContent = `Day ${current_month_days[i].
+                        textContent} is the Day of Atonement. (${current_month_days[i].
+                        textContent - day.textContent} days from now)`
+                        events_container.appendChild(list_item)
+                    }
+                }  else if (current_month_days[i].classList.contains("tabernacles")) {
+                    if (current_month_days[i].textContent - day.textContent <= 0) {
+                        if (current_month_days[i].textContent - day.textContent === 0) {
+                            daily_events_el.textContent = "this is the feast of tabernacles"
+                        }
+                    } else {
+                        let list_item = document.createElement("li")
+                        list_item.textContent = `Day ${current_month_days[i].
+                        textContent} is the Feast of Tabernacles. (${current_month_days[i].
+                        textContent - day.textContent} days from now)`
+                        events_container.appendChild(list_item)
+                    }
+                }
             }
         }
     }
+
 })
-
-
+                        
+                        
 setInterval(() => {
     let date = new Date()
     let seconds_arm = document.querySelector(".seconds_arm")
@@ -297,14 +373,6 @@ setInterval(() => {
 }, 1000)
 
 
-
-
-
-let date_fr_gz = new Date()
-let milliseconds = date_fr_gz.getTime()
-console.log(`Ground zero milliseconds: ${milliseconds}`)
-
-
 setInterval(() => {
-    daySeeker(real_days, year_zero, year_el) 
+    //daySeeker(real_days, year_zero, year_el) 
 }, 1000)
