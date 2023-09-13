@@ -6,7 +6,6 @@ function daySeeker(arr, start_point, year_el) {
     let milliseconds_per_day = 86400000
     let milliseconds_per_year = 31449600000
     let number_of_days_from_year_zero = Math.ceil(milliseconds_from_year_zero/milliseconds_per_day)
-    console.log(number_of_days_from_year_zero)
     let year = Math.ceil(number_of_days_from_year_zero/arr.length)
     if (number_of_days_from_year_zero > arr.length) {
         daySeeker(arr, start_point + milliseconds_per_year, year_el)
@@ -32,7 +31,7 @@ function daySeeker(arr, start_point, year_el) {
             current_day.classList.add("current-day")
             current_month.classList.add("current-month")
         }
-        year_el.textContent = year
+        //year_el.textContent = year
     }
 }
 
@@ -126,6 +125,14 @@ sundays_list.forEach((day, i) => {
     }
 })
 
+//https://www.gotquestions.org/Feast-of-Weeks.html
+//https://www.gotquestions.org/Feast-of-Tabernacles.html
+//https://www.gotquestions.org/Feast-of-Trumpets.html
+//https://www.gotquestions.org/Day-Atonement-Yom-Kippur.html
+//https://www.gotquestions.org/Feast-of-Firstfruits.html
+//https://www.gotquestions.org/firstfruits-offering.html
+//https://messianiclight.com/first-fruits-for-believers-in-yeshua/
+
 real_days.forEach((day) => {
     
     if (day.classList.contains("current-day")) {
@@ -148,9 +155,18 @@ real_days.forEach((day) => {
             if (current_month_days[i].classList.contains("feast-days") && current_month_title === "Month 1 - Abib") {
                 no_upcoming_events_el.textContent = ""
                 if (current_month_days[i].classList.contains("passover")) {
+                    let a = document.createElement("a")
+                    a.setAttribute("href", "https://www.gotquestions.org/what-is-Passover.html")
+                    a.setAttribute("target", "_blank")
+                    a.textContent = "What is Passover?"
+                    
                     if (current_month_days[i].textContent - day.textContent <= 0) {
                         if (current_month_days[i].textContent - day.textContent === 0) {
-                            daily_events_el.textContent = "this is passover"
+                            daily_events_el.textContent = `Hooray! Today is the long awaited Passover
+                            Feast which will begin at sunset this evening. Celebrate this feast with us
+                            tonight, prepare a nice meal for yourself and your family. For more info
+                            on this feast, visit gotQuestions.org: `
+                            daily_events_el.appendChild(a)
                         }
                     } else {
                         let list_item = document.createElement("li")
@@ -160,10 +176,15 @@ real_days.forEach((day) => {
                         events_container.appendChild(list_item)
                     }
                 } else if (current_month_days[i].classList.contains("unleavened-bread")) {
+                    let a = document.createElement("a")
+                    a.setAttribute("href", "https://www.gotquestions.org/unleavened-bread.html")
+                    a.setAttribute("target", "_blank")
+                    a.textContent = "What is Unleavened Bread?"
                     if (current_month_days[i].textContent === "15") {
                         if (current_month_days[i].textContent - day.textContent <= 0) {
                             if (current_month_days[i].textContent - day.textContent === 0) {
                                 daily_events_el.textContent = "this is unleavened bread"
+                                daily_events_el.appendChild(a)
                             }
                         } else {
                             let list_item = document.createElement("li")

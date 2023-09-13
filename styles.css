@@ -54,17 +54,25 @@ body {
 a {
   color: #1b9e61;
 }
+a:hover {
+  color: #ff00ff;
+}
 
+.main {
+  display: flex;
+  flex-direction: column-reverse;
+  /* height: 100vh;
+  overflow-y: scroll; */
+}
 
+.calendar {
+  border-bottom: 2px solid #999;
+}
 
 h1 {
   text-align: center;
   padding: 1rem;
-  font-size: 3rem;
-}
-.main h1 {
-  border-top: 2px solid #999;
-  margin-top: 1rem;
+  font-size: 2rem;
 }
 
 .year-title {
@@ -78,7 +86,6 @@ h1 {
   grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
   padding: 1rem;
-  margin-bottom: 2rem;
 }
 
 .month-title {
@@ -141,14 +148,15 @@ h1 {
 }
 
 .side-bar {
-  border-left: 2px solid #999;
+  border-right: 2px solid #999;
+  /* height: 100vh; */
 }
 
 
 .time {
   display: flex;
   justify-content: space-around;
-  align-items: flex-start;
+  align-items: center;
   gap: 1rem;
   padding: 1rem;
 }
@@ -176,7 +184,6 @@ h1 {
     align-items: center;
     justify-content: center;
     width: 500px;
-    height: 500px;
   }
   .container {
     position: absolute;
@@ -281,7 +288,6 @@ h1 {
     margin-bottom: 1rem;
   }
   .daily-events {
-    text-align: center;
     padding-bottom: 1rem;
   }
   .sabbaths-count {
@@ -309,4 +315,37 @@ h1 {
   }
   .events-container > li {
     padding-bottom: 1rem;
+  }
+
+
+
+
+  @media screen and (max-width: 1024px) {
+    .month-container {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .time {
+      flex-direction: column;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .month-container {
+      grid-template-columns: 1fr;
+    }
+    .digital {
+      width: 400px;
+    }
+    .clock-img {
+      width: 400px;
+    }
+  }
+
+  @media screen and (max-width: 425px) {
+    .wrapper {
+      grid-template-columns: 1fr;
+    }
+    .month-container {
+      gap: 2rem;
+    }
   }
