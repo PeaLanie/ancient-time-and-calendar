@@ -153,7 +153,7 @@ real_days.forEach((day) => {
             }
 
             if (current_month_days[i].classList.contains("feast-days") && current_month_title === "Month 1 - Abib") {
-                no_upcoming_events_el.textContent = ""
+                no_upcoming_events_el.style.display = "none"
                 if (current_month_days[i].classList.contains("passover")) {
                     let a = document.createElement("a")
                     a.setAttribute("href", "https://www.gotquestions.org/what-is-Passover.html")
@@ -183,7 +183,9 @@ real_days.forEach((day) => {
                     if (current_month_days[i].textContent === "15") {
                         if (current_month_days[i].textContent - day.textContent <= 0) {
                             if (current_month_days[i].textContent - day.textContent === 0) {
-                                daily_events_el.textContent = "this is unleavened bread"
+                                daily_events_el.textContent = `Hooray! Today begins the 7-day Feast
+                                called the Feast of Unleavened Bread, where we eat bread with no leaven.
+                                For meaning and more info on this feast visit getQuestions.org:`
                                 daily_events_el.appendChild(a)
                             }
                         } else {
@@ -208,8 +210,12 @@ real_days.forEach((day) => {
                         events_container.appendChild(list_item)
                     }
                 }
+                if (events_container.children.length === 0) {
+                    no_upcoming_events_el.style.display = "block"
+                    no_upcoming_events_el.textContent = "No feasts left on this month"
+                }
             } else if (current_month_days[i].classList.contains("feast-days") && current_month_title === "Month 3 - Sivan") {
-                no_upcoming_events_el.textContent = ""
+                no_upcoming_events_el.style.display = " none"
                 if (current_month_days[i].classList.contains("shavuot")) {
                     if (current_month_days[i].textContent - day.textContent <= 0) {
                         if (current_month_days[i].textContent - day.textContent === 0) {
@@ -224,6 +230,10 @@ real_days.forEach((day) => {
                         events_container.appendChild(list_item)
                     }
                 }
+                if (events_container.children.length === 0) {
+                    no_upcoming_events_el.style.display = "block"
+                    no_upcoming_events_el.textContent = "No feasts left on this month"
+                }
             } else if (current_month_days[i].textContent == "15" && current_month_title == "Month 6") {
                 
                 if (current_day.textContent == "15") {
@@ -231,7 +241,7 @@ real_days.forEach((day) => {
                 }
 
             } else if (current_month_days[i].classList.contains("feast-days") && current_month_title === "Month 7 - Ethanim") {
-                no_upcoming_events_el.textContent = ""
+                no_upcoming_events_el.style.display = "none"
                 if (current_month_days[i].classList.contains("day-of-trumpets")) {
                     if (current_month_days[i].textContent - day.textContent <= 0) {
                         if (current_month_days[i].textContent - day.textContent === 0) {
@@ -257,17 +267,23 @@ real_days.forEach((day) => {
                         events_container.appendChild(list_item)
                     }
                 }  else if (current_month_days[i].classList.contains("tabernacles")) {
-                    if (current_month_days[i].textContent - day.textContent <= 0) {
-                        if (current_month_days[i].textContent - day.textContent === 0) {
-                            daily_events_el.textContent = "this is the feast of tabernacles"
+                    if (current_month_days[i].textContent == "15") {
+                        if (current_month_days[i].textContent - day.textContent <= 0) {
+                            if (current_month_days[i].textContent - day.textContent === 0) {
+                                daily_events_el.textContent = "this is the feast of tabernacles"
+                            }
+                        } else {
+                            let list_item = document.createElement("li")
+                            list_item.textContent = `Day ${current_month_days[i].
+                            textContent} is the Feast of Tabernacles. (${current_month_days[i].
+                            textContent - day.textContent} days from now)`
+                            events_container.appendChild(list_item)
                         }
-                    } else {
-                        let list_item = document.createElement("li")
-                        list_item.textContent = `Day ${current_month_days[i].
-                        textContent} is the Feast of Tabernacles. (${current_month_days[i].
-                        textContent - day.textContent} days from now)`
-                        events_container.appendChild(list_item)
                     }
+                }
+                if (events_container.children.length === 0) {
+                    no_upcoming_events_el.style.display = "block"
+                    no_upcoming_events_el.textContent = "No feasts left on this month"
                 }
             }
         }

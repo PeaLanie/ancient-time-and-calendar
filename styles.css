@@ -15,10 +15,11 @@ body {
   font-size: 1.3rem;
 }
 .time-explaination {
+  text-align: center;
   background: #333;
   color: #fff;
   border-radius: 6px;
-  padding: 1rem;
+  padding: 0.5rem;
 }
 .time-discription {
   color: #1b9e61;
@@ -42,7 +43,7 @@ body {
 .clock-lesson-btn {
   display: block;
   font-size: 1.3rem;
-  padding: 1rem;
+  padding: 0.5rem;
   background: #333;
   border-radius: 6px;
   margin-top: 1rem;
@@ -123,7 +124,6 @@ h1 {
 .h4-days {
     display: flex;
     justify-content: center;
-    align-content: center;
     background: #ccc;
     border: 2px solid #ccc;
     padding: 0.3rem;
@@ -347,5 +347,23 @@ h1 {
     }
     .month-container {
       gap: 2rem;
+    }
+    .digital {
+      width: 100%;
+    }
+    .clock-img {
+      width: 100%;
+    }
+    .container {
+      height: 25%;
+    }
+    .container .seconds_arm {
+      width: 1.5px;
+    }
+    .container .minutes_arm {
+      width: 3px;
+    }
+    .container .hours_arm {
+      width: 5px;
     }
   }
