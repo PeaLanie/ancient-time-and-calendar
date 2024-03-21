@@ -5,7 +5,7 @@ function daySeeker(arr, start_point, year_el) {
     let milliseconds_from_year_zero = sec - start_point
     let milliseconds_per_day = 86400000
     let milliseconds_per_year = 31449600000
-    let number_of_days_from_year_zero = Math.ceil(milliseconds_from_year_zero/milliseconds_per_day)
+    let number_of_days_from_year_zero = Math.ceil(milliseconds_from_year_zero/milliseconds_per_day)//-169
     let year = Math.ceil(number_of_days_from_year_zero/arr.length)
     if (number_of_days_from_year_zero > arr.length) {
         daySeeker(arr, start_point + milliseconds_per_year, year_el)
@@ -285,6 +285,8 @@ real_days.forEach((day) => {
                     no_upcoming_events_el.style.display = "block"
                     no_upcoming_events_el.textContent = "No feasts left on this month"
                 }
+            } else if (!current_month_days[i].classList.contains("feast-days")) {
+                //events_container.style.display = "none"
             }
         }
     }
@@ -319,15 +321,15 @@ setInterval(() => {
     hours_arm.style.transform = `rotate(${hours_angle}deg)`
     
     if (minutes === 30) {
-        middle_hour.textContent = "middle of the"
+        middle_hour.textContent = `middle (${seconds}:${minutes}) of the`
     } else if (minutes >= 0 && minutes <= 15) {
-        middle_hour.textContent = "first quarter of the"
+        middle_hour.textContent = `First quarter (${seconds}:${minutes}) of the`
     } else if (minutes > 15 && minutes < 30) {
-        middle_hour.textContent = "second quarter of the"
+        middle_hour.textContent = `Second quarter (${seconds}:${minutes}) of the`
     } else if (minutes > 30 && minutes <= 45) {
-        middle_hour.textContent = "third quarter of the"
+        middle_hour.textContent = `Third quarter (${seconds}:${minutes}) of the`
     } else if (minutes > 45 && minutes <= 59) {
-        middle_hour.textContent = "fourth quarter of the"
+        middle_hour.textContent = `Fourth quarter (${seconds}:${minutes}) of the`
     } else {
         middle_hour.textContent = ""
     }
@@ -335,75 +337,75 @@ setInterval(() => {
     
     if (hours === 6 || hours === 18) {
         if (hours === 6) {
-            time_discription.textContent = "Morning"
+            time_discription.textContent = "Zero hour; Morning"
         } else {
-            time_discription.textContent = "Evening"
+            time_discription.textContent = "Zero hour; Evening"
         }
     } else if (hours === 7 || hours === 19) {
         if (hours === 7) {
-            time_discription.textContent = "first (1st) hour in the morning"
+            time_discription.textContent = "1st hour; Morning"
         } else {
-            time_discription.textContent = "first (1st) hour in the evening"
+            time_discription.textContent = "1st hour; Evening"
         }
     } else if (hours === 8 || hours === 20) {
         if (hours === 8) {
-            time_discription.textContent = "second (2nd) hour in the morning"
+            time_discription.textContent = "2nd hour; Morning"
         } else {
-            time_discription.textContent = "second (2nd) hour in the evening"
+            time_discription.textContent = "2nd hour; Evening"
         }
     } else if (hours === 9 || hours === 21) {
         if (hours === 9) {
-            time_discription.textContent = "third (3rd) hour after morning"
+            time_discription.textContent = "3rd hour; Morning"
         } else {
-            time_discription.textContent = "third (3rd) hour after evening"
+            time_discription.textContent = "3rd hour; Evening"
         }
     } else if (hours === 10 || hours === 22) {
         if (hours === 10) {
-            time_discription.textContent = "fourth (4th) hour after morning"
+            time_discription.textContent = "4th hour; After-morning"
         } else {
-            time_discription.textContent = "fourth (4th) hour after evening"
+            time_discription.textContent = "4th hour; After-evening"
         }
     } else if (hours === 11 || hours === 23) {
         if (hours === 11) {
-            time_discription.textContent = "fiveth (5th) hour after morning"
+            time_discription.textContent = "5th hour; After-morning"
         } else {
-            time_discription.textContent = "fiveth (5th) hour after evening"
+            time_discription.textContent = "5th hour; After-evening"
         }
     } else if (hours === 12 || hours === 0) {
         if (hours === 12) {
-            time_discription.textContent = "sixth (6th) hour (Noon)"
+            time_discription.textContent = "6th hour; Noon"
         } else {
-            time_discription.textContent = "sixth (6th) hour (Midnight)"
+            time_discription.textContent = "6th hour; Midnight"
         }
     } else if (hours === 13 || hours === 1) {
         if (hours === 13) {
-            time_discription.textContent = "seventh (7th) hour afternoon"
+            time_discription.textContent = "7th hour; Afternoon"
         } else {
-            time_discription.textContent = "seventh (7th) hour after midnight"
+            time_discription.textContent = "7th hour; After-midnight"
         }
     } else if (hours === 14 || hours === 2) {
         if (hours === 14) {
-            time_discription.textContent = "eighth (8th) hour afternoon"
+            time_discription.textContent = "8th hour; Afternoon"
         } else {
-            time_discription.textContent = "eighth (8th) hour after midnight"
+            time_discription.textContent = "8th hour; After-midnight"
         }
     } else if (hours === 15 || hours === 3) {
         if (hours === 15) {
-            time_discription.textContent = "nineth (9th) hour afternoon"
+            time_discription.textContent = "9th hour; Afternoon"
         } else {
-            time_discription.textContent = "nineth (9th) hour after midnight"
+            time_discription.textContent = "9th hour; After-midnight"
         }
     } else if (hours === 16 || hours === 4) {
         if (hours === 16) {
-            time_discription.textContent = "tenth (10th) hour afternoon"
+            time_discription.textContent = "10th hour; Afternoon"
         } else {
-            time_discription.textContent = "tenth (10th) hour after midnight"
+            time_discription.textContent = "10th hour; After-midnight"
         }
     } else if (hours === 17 || hours === 5) {
         if (hours === 17) {
-            time_discription.textContent = "eleventh (11th) hour afternoon"
+            time_discription.textContent = "11th hour; Afternoon"
         } else {
-            time_discription.textContent = "eleventh (11th) hour after midnight"
+            time_discription.textContent = "11th hour; After-midnight"
         }
     }
     
