@@ -12,7 +12,7 @@ body {
   margin: 0 auto;
   width: 1024px;
   background: #999;
-  box-shadow: 4px 4px 4px;
+  box-shadow: 8px 8px 6px rgb(129, 129, 129);
 }
 
 .clock-side-bar {
@@ -259,23 +259,31 @@ h1 {
   translate: 0 -6px;
 }
 
-/* .side-bar {
-  border-right: 0.1rem solid #999;
-} */
-
-.sidebar-container {
+.side-bar {
   position: sticky;
   top: 0;
+  
+} 
+
+.sidebar-container {
   padding: 1rem;
   height: 100vh;
 }
-.sidebar-month-title {
+.sidebar-title-container {
   text-align: center;
   padding: 1rem;
   background: #333;
   color: #fff;
   border-radius: 6px;
-  margin-bottom: 1rem;
+  margin: 1rem;
+}
+
+.menu-container {
+  display: none;
+  font-size: 1.5rem;
+}
+.fa-solid.fa-xmark {
+  display: none;
 }
 .daily-events {
   padding-bottom: 1rem;
@@ -312,7 +320,7 @@ h1 {
 @media screen and (max-width: 1024px) {
   .wrapper {
     width: 100%;
-  }  
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -367,34 +375,28 @@ h1 {
   }
 }
 
-/* @media screen and (max-width: 425px) {
+@media screen and (max-width: 425px) {
+  .side-bar {
+    position: sticky;
+    top: 0;
+    z-index: 12;
+    width: 100%;
+  }
+  .sidebar-container {
+    background-color: white;
+    display: none;
+  }
+  .sidebar-title-container {
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+    align-items: center;
+  }
   .wrapper {
     grid-template-columns: 1fr;
   }
-  .month-container {
-    gap: 2rem;
+  .menu-container {
+    display: block;
   }
-  .digital {
-    width: 100%;
-  }
-  .clock-img {
-    width: 100%;
-  }
-  .container {
-    height: 25%;
-  }
-  .container .seconds_arm {
-    width: 1.5px;
-  }
-  .container .minutes_arm {
-    width: 3px;
-  }
-  .container .hours_arm {
-    width: 5px;
-  }
-  .sidebar-container {
-    position: static;
-    width: 100%;
-    height: auto;
-  }
-} */
+  
+}
