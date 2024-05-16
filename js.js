@@ -71,6 +71,7 @@ let daily_events_el = document.querySelector(".daily-events");
 let no_upcoming_events_el = document.querySelector(".no-upcoming-events");
 let feast_days = document.querySelectorAll(".feast-days");
 let menu_container = document.querySelector(".menu-container");
+let gregorian_date_el = document.querySelector(".gregorian");
 
 dates.forEach((date) => {
   let day = date.children;
@@ -163,7 +164,7 @@ sundays_list.forEach((day, i) => {
 //https://www.gotquestions.org/firstfruits-offering.html
 //https://messianiclight.com/first-fruits-for-believers-in-yeshua/
 
-real_days.forEach((day) => {
+real_days.forEach((day, index) => {
   if (day.classList.contains("current-day")) {
     let current_month_title =
       day.parentElement.parentElement.firstChild.nextSibling.textContent;
@@ -356,6 +357,58 @@ real_days.forEach((day) => {
       }
     }
   }
+
+  day.addEventListener("click", () => {
+    
+    let date = new Date();
+    let sec = date.getTime();
+    let milliseconds_from_year_zero = sec - year_zero;
+    let milliseconds_per_day = 86400000;
+    let milliseconds_per_year = 31449600000;
+    let number_of_days_from_year_zero = milliseconds_from_year_zero / milliseconds_per_day;
+    let number_of_years_from_year_zero = Math.floor(milliseconds_from_year_zero / milliseconds_per_year);
+    let milliseconds_count_in_year = (number_of_days_from_year_zero/364 - number_of_years_from_year_zero) * milliseconds_per_year;
+    let days_count_in_year = Math.ceil(milliseconds_count_in_year/milliseconds_per_day);
+    let target_day = index+1;
+
+    let num_of_days_from_current_day;
+    let milliseconds;
+    let ndate;
+    let fullDate;
+    let container;
+    let container_btn;
+    if (target_day < days_count_in_year) {
+      num_of_days_from_current_day = days_count_in_year - target_day;
+      milliseconds = sec - (num_of_days_from_current_day * milliseconds_per_day);
+      ndate = new Date(milliseconds);
+      fullDate = `${ndate.getDate()}-${ndate.getMonth()+1}-${ndate.getFullYear()}`;
+      
+      detailsPopUp(fullDate, day);
+      container = document.querySelector(".details-popup");
+      container_btn = document.querySelector(".details-popup-btn");
+      
+    } else if (target_day > days_count_in_year) {
+      num_of_days_from_current_day = target_day - days_count_in_year;
+      milliseconds = sec + (num_of_days_from_current_day * milliseconds_per_day);
+      ndate = new Date(milliseconds);
+      fullDate = `${ndate.getDate()}-${ndate.getMonth()+1}-${ndate.getFullYear()}`;
+      
+      detailsPopUp(fullDate, day);
+      container = document.querySelector(".details-popup");
+      container_btn = document.querySelector(".details-popup-btn");
+      
+    } else {
+      fullDate = `${date.getDate()}-${date.getMonth()+1}-${date.getFullYear()}`;
+      
+      detailsPopUp(fullDate, day);
+      container = document.querySelector(".details-popup");
+      container_btn = document.querySelector(".details-popup-btn");
+
+    }
+    container_btn.addEventListener("click", () => {
+      container.remove();
+    })
+  });
 });
 
 setInterval(() => {
@@ -368,6 +421,8 @@ setInterval(() => {
   let seconds = date.getSeconds();
   let minutes = date.getMinutes();
   let hours = date.getHours();
+
+  gregorian_date_el.textContent = `${date.getDate()}-${date.getMonth()+1}-${date.getFullYear()}`;
 
   let seconds_angle = (seconds / 60) * 360;
   let minutes_angle = (minutes / 60) * 360;
@@ -492,3 +547,23 @@ menu_container.addEventListener("click", () => {
     sidebar_container.style.display = "none"
   }
 });
+
+function detailsPopUp(date, targetEl) {
+  let parentEl = targetEl.parentElement.parentElement;
+  let container = document.createElement("div");
+  container.className = "details-popup";
+  let dateEl = document.createElement("div");
+  dateEl.textContent = `Modern Calendar: ${date}`;
+  dateEl.style.padding = "1rem";
+  dateEl.style.fontWeight = "bold"
+  let btn = document.createElement("button");
+  btn.className = "details-popup-btn";
+  btn.textContent = "Close"
+
+  container.appendChild(dateEl);
+  container.appendChild(btn);
+
+  parentEl.appendChild(container);
+}
+
+
