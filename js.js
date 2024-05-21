@@ -1,52 +1,33 @@
-function daySeeker(arr, start_point, year_el) {
-  let date = new Date();
-  let sec = date.getTime();
-  let milliseconds_from_year_zero = sec - start_point;
-  let milliseconds_per_day = 86400000;
-  let milliseconds_per_year = 31449600000;
-  let number_of_days_from_year_zero = Math.ceil(
-    milliseconds_from_year_zero / milliseconds_per_day
-  ); //-169
-  let year = Math.ceil(number_of_days_from_year_zero / arr.length);
-  if (number_of_days_from_year_zero > arr.length) {
-    daySeeker(arr, start_point + milliseconds_per_year, year_el);
-    year_el.textContent = year;
-  } else {
-    let current_day = arr[number_of_days_from_year_zero - 1];
-    let prev_day = arr[number_of_days_from_year_zero - 2];
-    let current_month =
-      arr[number_of_days_from_year_zero - 1].parentElement.parentElement
-        .firstChild.nextSibling;
-    if (number_of_days_from_year_zero === 2) {
-      arr[0].classList.remove("current-day");
-      arr[0].parentElement.parentElement.firstChild.nextSibling.classList.remove(
-        "current-month"
-      );
-      current_day.classList.add("current-day");
-      current_month.classList.add("current-month");
-    } else if (number_of_days_from_year_zero === 1) {
-      arr[arr.length - 1].classList.remove("current-day");
-      arr[
-        arr.length - 1
-      ].parentElement.parentElement.firstChild.nextSibling.classList.remove(
-        "current-month"
-      );
-      current_day.classList.add("current-day");
-      current_month.classList.add("current-month");
-    } else {
-      let prev_month =
-        arr[number_of_days_from_year_zero - 2].parentElement.parentElement
-          .firstChild.nextSibling;
-      prev_day.classList.remove("current-day");
-      prev_month.classList.remove("current-month");
-      current_day.classList.add("current-day");
-      current_month.classList.add("current-month");
-    }
-    //year_el.textContent = year
-  }
-}
-
-let dates = document.querySelectorAll(".days-container");
+const dates = document.querySelectorAll(".days-container");
+const data = document.querySelectorAll(".h4-days");
+const year_el = document.querySelector(".year");
+const sidebar_month_title = document.querySelector(".sidebar-month-title");
+const events_container = document.querySelector(".events-container");
+const month_notes = document.querySelector(".month-notes");
+const sabbath_days_count_el = document.querySelector(".sabbath-days-count");
+const special_sabbath_days_count_el = document.querySelector(".special-sabbath-days-count");
+const days_count_el = document.querySelector(".days-count");
+const daily_events_el = document.querySelector(".daily-events");
+const no_upcoming_events_el = document.querySelector(".no-upcoming-events");
+const feast_days = document.querySelectorAll(".feast-days");
+const menu_container = document.querySelector(".menu-container");
+const gregorian_date_el = document.querySelector(".gregorian");
+const seconds_arm = document.querySelector(".seconds_arm");
+const minutes_arm = document.querySelector(".minutes_arm");
+const hours_arm = document.querySelector(".hours_arm");
+const time_discription = document.querySelector(".time-discription");
+const middle_hour = document.querySelector(".middle-hour");
+const menubar = document.querySelector(".fa-solid.fa-bars");
+const xmark = document.querySelector(".fa-solid.fa-xmark");
+const sidebar_container = document.querySelector(".sidebar-container");
+const month_container = document.querySelector(".month-container");
+const months = document.querySelectorAll(".month");
+const ancient_calendar = document.querySelector("#ancient-calendar");
+const milliseconds_per_day = 86400000;
+const milliseconds_per_year = 31449600000;
+const year_zero = 1679457600757 - 3600000*12; //22 Mar 2023 - 6am (1679457600757)
+const real_days = [];
+const date = new Date();
 
 let sundays_list = [];
 let mondays_list = [];
@@ -56,22 +37,21 @@ let thursdays_list = [];
 let fridays_list = [];
 let sabbaths_list = [];
 
-let real_days = [];
-let data = document.querySelectorAll(".h4-days");
-let year_el = document.querySelector(".year");
-let year_zero = 1679457600757; //22 Mar 2023 - 6am
-let sidebar_month_title = document.querySelector(".sidebar-month-title");
-let events_container = document.querySelector(".events-container");
-let month_notes = document.querySelector(".month-notes");
-let sabbath_days_count_el = document.querySelector(".sabbath-days-count");
-let special_sabbath_days_count_el = document.querySelector(
-  ".special-sabbath-days-count"
-);
-let daily_events_el = document.querySelector(".daily-events");
-let no_upcoming_events_el = document.querySelector(".no-upcoming-events");
-let feast_days = document.querySelectorAll(".feast-days");
-let menu_container = document.querySelector(".menu-container");
-let gregorian_date_el = document.querySelector(".gregorian");
+for (let i = 0; i < data.length; i++) {
+  if (!data[i].className.includes("none-days")) {
+    real_days.push(data[i]);
+  }
+}
+
+real_days.forEach(day => {
+  day.innerHTML = `<div>${day.textContent}</div>`;
+})
+
+daySeeker(real_days, year_zero);
+const current_day = document.querySelector(".current-day");
+const current_month = current_day.parentElement.parentElement;
+current_month.scrollIntoView({behavior: "smooth"});
+current_month.classList.add("show")
 
 dates.forEach((date) => {
   let day = date.children;
@@ -107,33 +87,32 @@ dates.forEach((date) => {
   }
 });
 
-sundays_list = sundays_list.filter(
-  (day) => !day.classList.contains("none-days")
-);
-mondays_list = mondays_list.filter(
-  (day) => !day.classList.contains("none-days")
-);
-tuesdays_list = tuesdays_list.filter(
-  (day) => !day.classList.contains("none-days")
-);
-wednesdays_list = wednesdays_list.filter(
-  (day) => !day.classList.contains("none-days")
-);
-thursdays_list = thursdays_list.filter(
-  (day) => !day.classList.contains("none-days")
-);
-fridays_list = fridays_list.filter(
-  (day) => !day.classList.contains("none-days")
-);
-sabbaths_list = sabbaths_list.filter(
-  (day) => !day.classList.contains("none-days")
-);
+sundays_list = sundays_list
+.filter((day) => !day.classList.contains("none-days"))
+.map((day) => {day.classList.add("first-day")});
 
-for (let i = 0; i < data.length; i++) {
-  if (!data[i].className.includes("none-days")) {
-    real_days.push(data[i]);
-  }
-}
+mondays_list = mondays_list
+.filter((day) => !day.classList.contains("none-days"))
+.map((day) => {day.classList.add("second-day")});
+
+tuesdays_list = tuesdays_list
+.filter((day) => !day.classList.contains("none-days"))
+.map((day) => {day.classList.add("third-day")});
+
+wednesdays_list = wednesdays_list
+.filter((day) => !day.classList.contains("none-days"))
+.map((day) => {day.classList.add("fourth-day")});
+
+thursdays_list = thursdays_list
+.filter((day) => !day.classList.contains("none-days"))
+.map((day) => {day.classList.add("fifth-day")});
+
+fridays_list = fridays_list
+.filter((day) => !day.classList.contains("none-days"))
+.map((day) => {day.classList.add("sixth-day")});
+
+sabbaths_list = sabbaths_list
+.filter((day) => !day.classList.contains("none-days"));
 
 feast_days.forEach((day) => {
   if (
@@ -146,16 +125,6 @@ feast_days.forEach((day) => {
   }
 });
 
-daySeeker(real_days, year_zero, year_el);
-let current_day = document.querySelector(".current-day");
-
-sundays_list.forEach((day, i) => {
-  sunday_count = i + 1;
-  if (day.classList.contains("current-day")) {
-    console.log(sunday_count);
-  }
-});
-
 //https://www.gotquestions.org/Feast-of-Weeks.html
 //https://www.gotquestions.org/Feast-of-Tabernacles.html
 //https://www.gotquestions.org/Feast-of-Trumpets.html
@@ -164,15 +133,20 @@ sundays_list.forEach((day, i) => {
 //https://www.gotquestions.org/firstfruits-offering.html
 //https://messianiclight.com/first-fruits-for-believers-in-yeshua/
 
-real_days.forEach((day, index) => {
+real_days.forEach((day, index, arr) => {
+
   if (day.classList.contains("current-day")) {
-    let current_month_title =
-      day.parentElement.parentElement.firstChild.nextSibling.textContent;
+    
+    days_count_el.textContent = `Day ${index+1} of ${arr.length}`;
+    gregorian_date_el.textContent = `${date.getDate()}-${date.getMonth()+1}-${date.getFullYear()}`;
+    
+    let current_month_title = day.parentElement.parentElement.firstChild.nextSibling.textContent;
     let current_month_days = day.parentElement.children;
     let sabbath_days = 0;
     let special_sabbath_days = 0;
 
     sidebar_month_title.textContent = `Day ${current_day.textContent} of ${current_month_title}`;
+
     for (let i = 0; i < current_month_days.length; i++) {
       if (current_month_days[i].classList.contains("sabbath-days")) {
         sabbath_days++;
@@ -356,21 +330,18 @@ real_days.forEach((day, index) => {
         //events_container.style.display = "none"
       }
     }
+
   }
 
   day.addEventListener("click", () => {
     
-    let date = new Date();
     let sec = date.getTime();
     let milliseconds_from_year_zero = sec - year_zero;
-    let milliseconds_per_day = 86400000;
-    let milliseconds_per_year = 31449600000;
     let number_of_days_from_year_zero = milliseconds_from_year_zero / milliseconds_per_day;
     let number_of_years_from_year_zero = Math.floor(milliseconds_from_year_zero / milliseconds_per_year);
     let milliseconds_count_in_year = (number_of_days_from_year_zero/364 - number_of_years_from_year_zero) * milliseconds_per_year;
     let days_count_in_year = Math.ceil(milliseconds_count_in_year/milliseconds_per_day);
     let target_day = index+1;
-
     let num_of_days_from_current_day;
     let milliseconds;
     let ndate;
@@ -409,24 +380,48 @@ real_days.forEach((day, index) => {
       container.remove();
     })
   });
+  showModernCalendar(day, index, year_zero, milliseconds_per_day, milliseconds_per_year);
 });
 
+if (current_day.classList.contains("first-day")) {
+  days_count_el.textContent += " - First Day";
+} else if (current_day.classList.contains("second-day")) {
+  days_count_el.textContent += " - Second Day";
+} else if (current_day.classList.contains("third-day")) {
+  days_count_el.textContent += " - Third Day";
+} else if (current_day.classList.contains("fourth-day")) {
+  days_count_el.textContent += " - Fourth Day";
+} else if (current_day.classList.contains("fifth-day")) {
+  days_count_el.textContent += " - Fifth Day";
+} else if (current_day.classList.contains("sixth-day")) {
+  days_count_el.textContent += " - Sixth Day";
+} else if (current_day.classList.contains("sabbath-days")) {
+  days_count_el.textContent += " - Shabbath";
+}
+
+let i = 0
+let h = 0
 setInterval(() => {
-  let date = new Date();
-  let seconds_arm = document.querySelector(".seconds_arm");
-  let minutes_arm = document.querySelector(".minutes_arm");
-  let hours_arm = document.querySelector(".hours_arm");
-  let time_discription = document.querySelector(".time-discription");
-  let middle_hour = document.querySelector(".middle-hour");
+  const date = new Date();
   let seconds = date.getSeconds();
   let minutes = date.getMinutes();
   let hours = date.getHours();
 
-  gregorian_date_el.textContent = `${date.getDate()}-${date.getMonth()+1}-${date.getFullYear()}`;
+  if (seconds == 0) {
+    i = 0;
+  } else {
+    i = (seconds/10);
+  }
+  if (minutes == 0) {
+    h = 0;
+  } else {
+    h = minutes/2;
+  }
 
   let seconds_angle = (seconds / 60) * 360;
-  let minutes_angle = (minutes / 60) * 360;
-  let hours_angle = (hours / 12) * 360;
+  let minutes_angle = ((minutes / 60) * 360) + i;
+  let hours_angle = ((hours / 12) * 360) + h;
+  
   if (seconds == 31 || seconds == 33) {
     seconds_angle = Math.floor(seconds_angle);
   } else if (seconds == 21 || seconds == 42) {
@@ -439,99 +434,13 @@ setInterval(() => {
   minutes_arm.style.transform = `rotate(${minutes_angle}deg)`;
   hours_arm.style.transform = `rotate(${hours_angle}deg)`;
 
-  if (minutes === 30) {
-    middle_hour.textContent = `middle (${seconds}:${minutes}) of the`;
-  } else if (minutes >= 0 && minutes <= 15) {
-    middle_hour.textContent = `First quarter (${seconds}:${minutes}) of the`;
-  } else if (minutes > 15 && minutes < 30) {
-    middle_hour.textContent = `Second quarter (${seconds}:${minutes}) of the`;
-  } else if (minutes > 30 && minutes <= 45) {
-    middle_hour.textContent = `Third quarter (${seconds}:${minutes}) of the`;
-  } else if (minutes > 45 && minutes <= 59) {
-    middle_hour.textContent = `Fourth quarter (${seconds}:${minutes}) of the`;
-  } else {
-    middle_hour.textContent = "";
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
   }
 
-  if (hours === 6 || hours === 18) {
-    if (hours === 6) {
-      time_discription.textContent = "Zero hour; Morning";
-    } else {
-      time_discription.textContent = "Zero hour; Evening";
-    }
-  } else if (hours === 7 || hours === 19) {
-    if (hours === 7) {
-      time_discription.textContent = "1st hour; Morning";
-    } else {
-      time_discription.textContent = "1st hour; Evening";
-    }
-  } else if (hours === 8 || hours === 20) {
-    if (hours === 8) {
-      time_discription.textContent = "2nd hour; Morning";
-    } else {
-      time_discription.textContent = "2nd hour; Evening";
-    }
-  } else if (hours === 9 || hours === 21) {
-    if (hours === 9) {
-      time_discription.textContent = "3rd hour; Morning";
-    } else {
-      time_discription.textContent = "3rd hour; Evening";
-    }
-  } else if (hours === 10 || hours === 22) {
-    if (hours === 10) {
-      time_discription.textContent = "4th hour; After-morning";
-    } else {
-      time_discription.textContent = "4th hour; After-evening";
-    }
-  } else if (hours === 11 || hours === 23) {
-    if (hours === 11) {
-      time_discription.textContent = "5th hour; After-morning";
-    } else {
-      time_discription.textContent = "5th hour; After-evening";
-    }
-  } else if (hours === 12 || hours === 0) {
-    if (hours === 12) {
-      time_discription.textContent = "6th hour; Noon";
-    } else {
-      time_discription.textContent = "6th hour; Midnight";
-    }
-  } else if (hours === 13 || hours === 1) {
-    if (hours === 13) {
-      time_discription.textContent = "7th hour; Afternoon";
-    } else {
-      time_discription.textContent = "7th hour; After-midnight";
-    }
-  } else if (hours === 14 || hours === 2) {
-    if (hours === 14) {
-      time_discription.textContent = "8th hour; Afternoon";
-    } else {
-      time_discription.textContent = "8th hour; After-midnight";
-    }
-  } else if (hours === 15 || hours === 3) {
-    if (hours === 15) {
-      time_discription.textContent = "9th hour; Afternoon";
-    } else {
-      time_discription.textContent = "9th hour; After-midnight";
-    }
-  } else if (hours === 16 || hours === 4) {
-    if (hours === 16) {
-      time_discription.textContent = "10th hour; Afternoon";
-    } else {
-      time_discription.textContent = "10th hour; After-midnight";
-    }
-  } else if (hours === 17 || hours === 5) {
-    if (hours === 17) {
-      time_discription.textContent = "11th hour; Afternoon";
-    } else {
-      time_discription.textContent = "11th hour; After-midnight";
-    }
-  }
+  time_discription.textContent = `${getHour(hours)}:${minutes}`;
+
 }, 1000);
-
-
-menubar = document.querySelector(".fa-solid.fa-bars");
-xmark = document.querySelector(".fa-solid.fa-xmark");
-sidebar_container = document.querySelector(".sidebar-container")
 
 menu_container.addEventListener("click", () => {
     console.log(xmark.style.display !== "block")
@@ -548,22 +457,136 @@ menu_container.addEventListener("click", () => {
   }
 });
 
+if (window.innerWidth < 768) {
+  document.querySelectorAll(".modernDate").forEach(item => {
+    item.remove();
+  })
+}
+
+month_container.addEventListener("scroll", () => {
+  const middleScreen = window.innerHeight / 2;
+  //console.log(middleScreen)
+  months.forEach(month => {
+    const monthTop = month.getBoundingClientRect().top;
+    //console.log(monthBottom)
+    if (monthTop < middleScreen) {
+      //month.classList.add("show")
+    } else {
+      //month.classList.remove("show")
+    }
+  })
+})
+
+function daySeeker(arr, start_point) {
+  const date = new Date();
+  let sec = date.getTime();
+  let milliseconds_from_year_zero = sec - start_point;
+  const milliseconds_per_day = 86400000;
+  const milliseconds_per_year = 31449600000;
+  let number_of_days_from_year_zero = Math.ceil(
+    milliseconds_from_year_zero / milliseconds_per_day
+  );
+  let year = Math.ceil(number_of_days_from_year_zero / arr.length);
+  if (number_of_days_from_year_zero > arr.length) {
+    daySeeker(arr, start_point + milliseconds_per_year);
+  } else {
+    let current_day = arr[number_of_days_from_year_zero - 1];
+    let prev_day = arr[number_of_days_from_year_zero - 2];
+    let current_month = current_day.parentElement.parentElement.firstChild.nextSibling;
+    
+    if (number_of_days_from_year_zero === 2) {
+      arr[0].classList.remove("current-day");
+      arr[0].parentElement.parentElement.firstChild.nextSibling.classList.remove(
+        "current-month"
+      );
+      current_day.classList.add("current-day");
+      current_month.classList.add("current-month");
+    } else if (number_of_days_from_year_zero === 1) {
+      arr[arr.length - 1].classList.remove("current-day");
+      arr[
+        arr.length - 1
+      ].parentElement.parentElement.firstChild.nextSibling.classList.remove(
+        "current-month"
+      );
+      current_day.classList.add("current-day");
+      current_month.classList.add("current-month");
+    } else {
+      let prev_month =
+      arr[number_of_days_from_year_zero - 2].parentElement.parentElement.firstChild.nextSibling;
+      prev_day.classList.remove("current-day");
+      prev_month.classList.remove("current-month");
+      current_day.classList.add("current-day");
+      current_month.classList.add("current-month");
+    }
+  }
+}
+
 function detailsPopUp(date, targetEl) {
-  let parentEl = targetEl.parentElement.parentElement;
+  let parentEl = targetEl.parentElement.parentElement.parentElement.parentElement;
+  let current_month_title = targetEl.parentElement.parentElement.firstChild.nextSibling.textContent;
   let container = document.createElement("div");
-  container.className = "details-popup";
+  container.classList.add("details-popup");
   let dateEl = document.createElement("div");
-  dateEl.textContent = `Modern Calendar: ${date}`;
+  dateEl.innerHTML = `Modern Calendar: <span style=color:#067bc2ff> ${date} (Day ${targetEl.children[0].textContent} of ${current_month_title})</span>`;
   dateEl.style.padding = "1rem";
-  dateEl.style.fontWeight = "bold"
+  dateEl.style.fontWeight = "bold";
   let btn = document.createElement("button");
   btn.className = "details-popup-btn";
-  btn.textContent = "Close"
+  btn.textContent = "Close";
 
   container.appendChild(dateEl);
   container.appendChild(btn);
 
   parentEl.appendChild(container);
+}
+
+function showModernCalendar(day, index, start, mpd, mpy) {
+  let sec = date.getTime();
+  let milliseconds_from_year_zero = sec - start;
+  let number_of_days_from_year_zero = milliseconds_from_year_zero / mpd;
+  let number_of_years_from_year_zero = Math.floor(milliseconds_from_year_zero / mpy);
+  let milliseconds_count_in_year = (number_of_days_from_year_zero/364 - number_of_years_from_year_zero) * mpy;
+  let days_count_in_year = Math.ceil(milliseconds_count_in_year / mpd);
+  let target_day = index+1;
+  let num_of_days_from_current_day;
+  let milliseconds;
+  let ndate;
+  let fullDate;
+  let dateEl;
+  if (target_day < days_count_in_year) {
+    num_of_days_from_current_day = days_count_in_year - target_day;
+    milliseconds = sec - (num_of_days_from_current_day * mpd);
+    ndate = new Date(milliseconds);
+    fullDate = `${ndate.getDate()}-${ndate.getMonth()+1}-${ndate.getFullYear()}`;
+
+    dateEl = document.createElement("div");
+    dateEl.classList.add("modernDate");
+    dateEl.textContent = fullDate;
+    day.appendChild(dateEl);
+  } else if (target_day > days_count_in_year) {
+    num_of_days_from_current_day = target_day - days_count_in_year;
+    milliseconds = sec + (num_of_days_from_current_day * mpd);
+    ndate = new Date(milliseconds);
+    fullDate = `${ndate.getDate()}-${ndate.getMonth()+1}-${ndate.getFullYear()}`;
+
+    dateEl = document.createElement("div");
+    dateEl.classList.add("modernDate");
+    dateEl.textContent = fullDate;
+    day.appendChild(dateEl);
+  }
+}
+
+function getHour(hours) {
+  let hour;
+  if (hours < 7) {
+    hour = hours + 6;
+  } else if (hours > 6 && hours < 19) {
+    hour = hours - 6;
+  } else if (hours > 18) {
+    hour = hours - 18;
+  }
+
+  return hour;
 }
 
 

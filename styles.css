@@ -1,32 +1,44 @@
+
+:root {
+--english-violet: #533a71ff;
+--lavender-pink: #f0a6caff;
+--pink-lavender: #efc3e6ff;
+--honolulu-blue: #067bc2ff;
+--walnut-brown: #5e503fff;
+--white: white;
+--box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.5);
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Montserrat", Arial;
+  color: #333;
 }
 .wrapper {
   display: grid;
-  grid-template-columns: 1fr 2fr;
-  margin: 0 auto;
-  width: 1024px;
-  background: #999;
-  box-shadow: 8px 8px 6px rgb(129, 129, 129);
+  grid-template-columns: 1fr 2fr 1fr;
+  align-content: center;
+  justify-items: center;
+  background: var(--pink-lavender);
+  padding: 1rem;
+  width: 100vw;
+  height: 100vh;
 }
 
-.clock-side-bar {
-  font-size: 1.3rem;
-}
 .time-explaination {
   text-align: center;
-  background: #333;
-  color: #fff;
+  font-size: 24px;
+  background: var(--english-violet);
+  color: var(--pink-lavender);
   border-radius: 6px;
   padding: 0.5rem;
+  width: 6rem;
 }
 .time-discription {
-  color: #1b9e61;
   font-weight: bold;
 }
 .redgreen-text {
@@ -47,36 +59,31 @@ body {
 .clock-lesson-btn {
   display: block;
   font-size: 1.3rem;
-  padding: 0.5rem;
-  background: #333;
+  padding: 0.5rem 1rem;
+  background: var(--english-violet);
   border-radius: 6px;
-  margin-top: 1rem;
   text-align: center;
 }
-.clock-lesson-btn:hover {
-  color: #fff;
-}
+
 a {
-  color: #1b9e61;
+  color: var(--honolulu-blue);
+  text-decoration: none;
 }
 a:hover {
-  color: #ff00ff;
-}
-
-.main {
-  display: flex;
-  flex-direction: column-reverse;
-  /* height: 100vh;
-  overflow-y: scroll; */
+  background-color: var(--lavender-pink);
+  color: var(--english-violet);
 }
 
 .calendar {
-  border-bottom: 2px solid #999;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--lavender-pink);
+  border-radius: 1rem;
 }
 
 h1 {
   text-align: center;
-  padding: 1rem;
+  padding: 1rem 0;
   font-size: 2rem;
 }
 
@@ -89,15 +96,15 @@ h1 {
   position: absolute;
   background-color: white;
   border-radius: 7px;
-  max-height: 21rem;
-  max-width: 21rem;
   z-index: 5;
-  box-shadow: 3px 3px 7px;
+  box-shadow: var(--box-shadow);
+  transition: transform 1000ms ease-in-out;
 }
+
 .details-popup-btn {
   padding: 0.5rem;
-  background-color: #333;
-  color: white;
+  background-color: var(--english-violet);
+  color: var(--white);
   border: none;
   cursor: pointer;
   width: 100%;
@@ -114,21 +121,29 @@ h1 {
 .month {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  /* transform: translateX(150%);
+  transition: transform 500ms ease-in-out; */
+}
+
+.show {
+  transform: translateX(0);
 }
 
 .month-container {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
+  flex-direction: column;
   gap: 1rem;
-  padding: 1rem;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: calc(100vh - 6rem);
 }
 
 .month-title {
   text-align: center;
-  background: #333;
-  border-radius: 6px;
-  color: white;
-  padding: 0.5rem 0;
+  background: var(--english-violet);
+  color: var(--pink-lavender);
+  padding: 1.2rem 0;
 }
 
 .week-container {
@@ -136,7 +151,7 @@ h1 {
   grid-template-columns: repeat(7, 1fr);
   justify-items: center;
   gap: 0.5rem;
-  margin: 0.5rem 0;
+  margin: 1rem;
 }
 .week-container:hover {
   cursor: default;
@@ -145,67 +160,87 @@ h1 {
   padding: 0.5rem;
 }
 .saturday {
-  background: #800000;
-  border-radius: 6px;
-  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--english-violet);
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  color: var(--white);
 }
 
 .days-container {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   gap: 0.5rem;
+  padding: 0 1rem;
 }
 .h4-days {
   display: flex;
-  justify-content: center;
-  background: #ccc;
-  border: 2px solid #ccc;
-  padding: 0.3rem;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--pink-lavender);
+  border: 2px solid var(--pink-lavender);
   font-size: 1rem;
-  font-weight: normal;
   border-radius: 6px;
-  transition: color 0.5s ease-in-out, background-color 0.5s ease-in-out,
-    translate 0.5s ease-in-out;
+  width: 90px;
+  height: 90px;
+}
+.modernDate {
+  font-weight: normal;
+  font-size: small;
 }
 .h4-days:hover {
   cursor: default;
 }
 .none-days {
-  color: #999;
-}
-.sabbath-days {
-  color: #800000;
+  visibility: hidden;
 }
 .sign-days {
-  color: #fff;
-  background: #000080;
-  border: 2px solid #000080;
+  color: var(--white);
+  background: var(--walnut-brown);
+  border: 2px solid var(--walnut-brown);
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 2.5px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--english-violet); 
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #5a5a5a; 
 }
 
 .time {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
   align-items: center;
   gap: 1rem;
-  padding: 1rem;
-}
-.digital-time {
-  background: #333;
-  color: #fff;
-  padding: 1rem 2rem;
-  border-radius: 6px;
-  font-size: larger;
+  padding-left: 1rem;
 }
 
-.clock-img {
-  z-index: 10;
-  width: 100%;
-}
 .digital {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 360px;
+}
+.clock-img {
   width: 100%;
 }
 .container {
@@ -213,99 +248,79 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
+  height: 360px;
 }
 .container > div {
   position: absolute;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 60%;
 }
-.container > div > div {
-  display: flex;
-  align-items: flex-end;
-  height: 40%;
-  width: 100%;
-}
-.container > div .seconds {
-  background: #008000;
-  border-radius: 1.5px;
-}
-.container > div .minutes div {
-  background: #6d6d6d;
-  height: 80%;
-  width: 100%;
-  border-radius: 3px;
-}
-.container > div .hours div {
-  background: #ff0000;
-  height: 60%;
-  width: 100%;
-  border-radius: 5px;
-}
+
 .container .seconds_arm {
-  width: 3px;
-  border-radius: 1.5px;
   z-index: 7;
 }
 .container .minutes_arm {
-  width: 6px;
-  border-radius: 3px;
   z-index: 6;
 }
 .container .hours_arm {
-  width: 10px;
-  border-radius: 5px;
   z-index: 5;
+}
+.clock-side-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .feast-days {
-  border: 2px solid #008000;
+  border: 2px solid var(--english-violet);
 }
 .feast-days:hover {
   cursor: pointer;
 }
 .passover {
-  background: #008000;
-  color: #fff;
+  background: var(--english-violet);
+  color: var(--white);
 }
-.special-sabbaths {
-  color: #008000;
-}
+
 
 .current-day {
   display: flex;
   justify-content: center;
   align-content: center;
-  background: #ff00ff;
-  color: #fff;
+  background: var(--honolulu-blue);
+  color: var(--white);
   translate: 0 -6px;
   border: none;
+  box-shadow: var(--box-shadow);
+  border-radius: 1rem;
 }
 .current-month {
-  background: #ff00ff;
-  color: #fff;
+  background: var(--honolulu-blue);
+  color: var(--white);
   translate: 0 -6px;
+  box-shadow: var(--box-shadow);
+  margin: 0 1rem;
+  border-radius: 1rem;
 }
 
 .side-bar {
-  position: sticky;
-  top: 0;
-  
+  width: 360px;
 } 
-
-.sidebar-container {
-  padding: 1rem;
-  height: 100vh;
-}
 .sidebar-title-container {
   text-align: center;
   padding: 1rem;
-  background: #333;
-  color: #fff;
+  background: var(--english-violet);
+  color: var(--white);
   border-radius: 6px;
-  margin: 1rem;
+  margin-bottom: 1rem;
+}
+
+.days-count {
+  border: 2px dashed var(--english-violet);
+  text-align: center;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  border-radius: 6px;
+  font-weight: bold;
 }
 .day-of-week {
   margin-bottom: 1rem;
@@ -313,7 +328,7 @@ h1 {
 .gregorian {
   font-size: larger;
   font-weight: bold;
-  color: #c500c5;
+  color: var(--honolulu-blue);
 }
 
 .menu-container {
@@ -329,7 +344,7 @@ h1 {
 .sabbaths-count {
   padding: 0.5rem 1rem;
   border-radius: 6px;
-  border: 2px solid #333;
+  border: 2px dashed var(--english-violet);
   margin-bottom: 1rem;
 }
 .upcoming-events {
@@ -338,7 +353,7 @@ h1 {
   font-style: italic;
   font-size: 0.8rem;
   text-transform: uppercase;
-  color: #800000;
+  color: var(--honolulu-blue);
 }
 .no-upcoming-events {
   text-transform: uppercase;
@@ -355,65 +370,50 @@ h1 {
   padding-bottom: 1rem;
 }
 
+@media screen and (max-width: 1440px) {
+  .wrapper {
+    display: flex;
+  }
+  .side-bar {
+    padding-right: 1rem;
+  }
+}
+
 @media screen and (max-width: 1024px) {
   .wrapper {
-    width: 100%;
+    flex-wrap: wrap;
+    width: 768px;
+    height: 100%;
+    justify-content: center;
+    gap: 1rem;
+    margin: auto;
+  }
+  .side-bar {
+    order: 1;
+    padding: 0;
+  }
+  .main {
+    order: 3;
+  }
+  .time {
+    order: 2;
+    padding: 0;
   }
 }
 
 @media screen and (max-width: 768px) {
   .wrapper {
     grid-template-columns: repeat(2, 1fr);
-    width: 100%;
-  }
-  .month-container {
-    grid-template-columns: 1fr;
   }
 
-  .container {
-    height: 100%;
-  }
-  .container > div {
-    height: 50%;
-  }
-  .container > div > div {
-    height: 30%;
-    width: 100%;
-  }
-  .container > div .seconds {
-    background: #008000;
-    border-radius: 1.5px;
-  }
-  .container > div .minutes div {
-    background: #6d6d6d;
-    height: 80%;
-    width: 100%;
-    border-radius: 3px;
-  }
-  .container > div .hours div {
-    background: #ff0000;
-    height: 60%;
-    width: 100%;
-    border-radius: 5px;
-  }
-  .container .seconds_arm {
-    width: 1px;
-    border-radius: 1.5px;
-    z-index: 7;
-  }
-  .container .minutes_arm {
-    width: 3px;
-    border-radius: 3px;
-    z-index: 6;
-  }
-  .container .hours_arm {
-    width: 5px;
-    border-radius: 5px;
-    z-index: 5;
-  }
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 430px) {
+  .h4-days {
+    padding: 1rem;
+    width: 100%;
+    height: 100%;
+  }
   .side-bar {
     position: sticky;
     top: 0;
