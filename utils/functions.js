@@ -151,15 +151,17 @@ function displayMoonPhases(el) {
       let lon = pos.coords.longitude;
 
       getMoonPhases(lat, lon, el).then((data) => {
+        document.querySelector(".loader").remove()
         if (data) {
+          let date =  new Date();
           apiCount = parseInt(apiCount);
           apiCount++;
           localStorage.setItem("apiCount", apiCount);
-          localStorage.setItem("loaded", date.getTime());
+          localStorage.setItem("refreshedTime", date.getTime());
           displayApiData(data, el);
-          alert(
-            `API requests: ${localStorage.apiCount} out of 500 requests per day`
-          );
+          // alert(
+          //   `API requests: ${localStorage.apiCount} out of 500 requests per day`
+          // );
         }
       });
     });
@@ -169,102 +171,51 @@ function displayMoonPhases(el) {
 }
 
 function displayApiData(data, container) {
-  let obj = {};
-  let list = [];
+  localStorage.setItem("ApiData", JSON.stringify(data))
   let contDiv = document.createElement("div");
   contDiv.className = "side-bar-main-content luminaries";
 
   let date_el = document.createElement("div");
   date_el.className = "side-bar-main-content luminaries date";
   date_el.textContent = `Today: ${data.datestamp}`;
-  obj.type = date_el.nodeName.toLocaleLowerCase();
-  obj.class = date_el.className;
-  obj.textContent = date_el.textContent;
-  list.push(obj);
-  obj = {};
 
   let sun_container = document.createElement("div");
 
   let sun_title_el = document.createElement("h3");
   sun_title_el.className = "sun";
   sun_title_el.textContent = "The Sun";
-  obj.type = sun_title_el.nodeName.toLocaleLowerCase();
-  obj.class = sun_title_el.className;
-  obj.textContent = sun_title_el.textContent;
-  list.push(obj);
-  obj = {};
 
   let sunrise_el = document.createElement("div");
   sunrise_el.className = "sun";
   sunrise_el.textContent = `Sunrise: ${data.sun.sunrise_timestamp}`;
-  obj.type = sunrise_el.nodeName.toLocaleLowerCase();
-  obj.class = sunrise_el.className;
-  obj.textContent = sunrise_el.textContent;
-  list.push(obj);
-  obj = {};
 
   let sunset_el = document.createElement("div");
   sunset_el.className = "sun";
   sunset_el.textContent = `Sunset: ${data.sun.sunset_timestamp}`;
-  obj.type = sunset_el.nodeName.toLocaleLowerCase();
-  obj.class = sunset_el.className;
-  obj.textContent = sunset_el.textContent;
-  list.push(obj);
-  obj = {};
 
   let daylength_el = document.createElement("div");
   daylength_el.className = "sun";
   daylength_el.textContent = `Day Length: ${data.sun.day_length}`;
-  obj.type = daylength_el.nodeName.toLocaleLowerCase();
-  obj.class = daylength_el.className;
-  obj.textContent = daylength_el.textContent;
-  list.push(obj);
-  obj = {};
 
   let solar_noon_el = document.createElement("div");
   solar_noon_el.className = "sun";
   solar_noon_el.textContent = `Directly above area at: ${data.sun.solar_noon}`;
-  obj.type = solar_noon_el.nodeName.toLocaleLowerCase();
-  obj.class = solar_noon_el.className;
-  obj.textContent = solar_noon_el.textContent;
-  list.push(obj);
-  obj = {};
 
   let solar_eclipse_title = document.createElement("h4");
   solar_eclipse_title.className = "sun";
   solar_eclipse_title.textContent = "Next Solar Eclipse";
-  obj.type = solar_eclipse_title.nodeName.toLocaleLowerCase();
-  obj.class = solar_eclipse_title.className;
-  obj.textContent = solar_eclipse_title.textContent;
-  list.push(obj);
-  obj = {};
 
   let solar_eclipse_date = document.createElement("div");
   solar_eclipse_date.className = "sun";
   solar_eclipse_date.textContent = `Date: ${data.sun.next_solar_eclipse.datestamp}`;
-  obj.type = solar_eclipse_date.nodeName.toLocaleLowerCase();
-  obj.class = solar_eclipse_date.className;
-  obj.textContent = solar_eclipse_date.textContent;
-  list.push(obj);
-  obj = {};
 
   let solar_eclipse_type = document.createElement("div");
   solar_eclipse_type.className = "sun";
   solar_eclipse_type.textContent = `Type: ${data.sun.next_solar_eclipse.type}`;
-  obj.type = solar_eclipse_type.nodeName.toLocaleLowerCase();
-  obj.class = solar_eclipse_type.className;
-  obj.textContent = solar_eclipse_type.textContent;
-  list.push(obj);
-  obj = {};
 
   let solar_eclipse_regions = document.createElement("div");
   solar_eclipse_regions.className = "sun";
   solar_eclipse_regions.textContent = `Visibility Regions: ${data.sun.next_solar_eclipse.visibility_regions}`;
-  obj.type = solar_eclipse_regions.nodeName.toLocaleLowerCase();
-  obj.class = solar_eclipse_regions.className;
-  obj.textContent = solar_eclipse_regions.textContent;
-  list.push(obj);
-  obj = {};
 
   sun_container.appendChild(sun_title_el);
   sun_container.appendChild(sunrise_el);
@@ -281,102 +232,47 @@ function displayApiData(data, container) {
   let moon_title_el = document.createElement("h3");
   moon_title_el.className = "moon";
   moon_title_el.textContent = "The Moon";
-  obj.type = moon_title_el.nodeName.toLocaleLowerCase();
-  obj.class = moon_title_el.className;
-  obj.textContent = moon_title_el.textContent;
-  list.push(obj);
-  obj = {};
 
   let moonrise_el = document.createElement("div");
   moonrise_el.className = "moon";
   moonrise_el.textContent = `Moonrise: ${data.moon.moonrise}`;
-  obj.type = moonrise_el.nodeName.toLocaleLowerCase();
-  obj.class = moonrise_el.className;
-  obj.textContent = moonrise_el.textContent;
-  list.push(obj);
-  obj = {};
 
   let moonset_el = document.createElement("div");
   moonset_el.className = "moon";
-  moonset_el.textContent = `Moonrise: ${data.moon.moonset}`;
-  obj.type = moonset_el.nodeName.toLocaleLowerCase();
-  obj.class = moonset_el.className;
-  obj.textContent = moonset_el.textContent;
-  list.push(obj);
-  obj = {};
+  moonset_el.textContent = `Moonset: ${data.moon.moonset}`;
 
   let moonage_el = document.createElement("div");
   moonage_el.className = "moon";
   moonage_el.textContent = `Age: ${data.moon.age_days} days old`;
-  obj.type = moonage_el.nodeName.toLocaleLowerCase();
-  obj.class = moonage_el.className;
-  obj.textContent = moonage_el.textContent;
-  list.push(obj);
-  obj = {};
-
+  
   let moon_illumination_el = document.createElement("div");
   moon_illumination_el.className = "moon";
   moon_illumination_el.textContent = `Illumination: ${data.moon.illumination} ${data.moon.emoji}`;
-  obj.type = moon_illumination_el.nodeName.toLocaleLowerCase();
-  obj.class = moon_illumination_el.className;
-  obj.textContent = moon_illumination_el.textContent;
-  list.push(obj);
-  obj = {};
-
+  
   let moon_phase_name_el = document.createElement("div");
   moon_phase_name_el.className = "moon";
   moon_phase_name_el.textContent = `Phase Name: ${data.moon.phase_name}`;
-  obj.type = moon_phase_name_el.nodeName.toLocaleLowerCase();
-  obj.class = moon_phase_name_el.className;
-  obj.textContent = moon_phase_name_el.textContent;
-  list.push(obj);
-  obj = {};
-
+  
   let moon_stage_el = document.createElement("div");
   moon_stage_el.className = "moon";
   moon_stage_el.textContent = `Stage: ${data.moon.stage}`;
-  obj.type = moon_stage_el.nodeName.toLocaleLowerCase();
-  obj.class = moon_stage_el.className;
-  obj.textContent = moon_stage_el.textContent;
-  list.push(obj);
-  obj = {};
-
+  
   let lunar_eclipse_title_el = document.createElement("h4");
   lunar_eclipse_title_el.className = "moon";
   lunar_eclipse_title_el.textContent = `Next Lunar Eclipse`;
-  obj.type = lunar_eclipse_title_el.nodeName.toLocaleLowerCase();
-  obj.class = lunar_eclipse_title_el.className;
-  obj.textContent = lunar_eclipse_title_el.textContent;
-  list.push(obj);
-  obj = {};
-
+  
   let lunar_eclipse_date_el = document.createElement("div");
   lunar_eclipse_date_el.className = "moon";
   lunar_eclipse_date_el.textContent = `Date: ${data.moon.next_lunar_eclipse.datestamp}`;
-  obj.type = lunar_eclipse_date_el.nodeName.toLocaleLowerCase();
-  obj.class = lunar_eclipse_date_el.className;
-  obj.textContent = lunar_eclipse_date_el.textContent;
-  list.push(obj);
-  obj = {};
-
+  
   let lunar_eclipse_type_el = document.createElement("div");
   lunar_eclipse_type_el.className = "moon";
   lunar_eclipse_type_el.textContent = `Type: ${data.moon.next_lunar_eclipse.type}`;
-  obj.type = lunar_eclipse_type_el.nodeName.toLocaleLowerCase();
-  obj.class = lunar_eclipse_type_el.className;
-  obj.textContent = lunar_eclipse_type_el.textContent;
-  list.push(obj);
-  obj = {};
-
+  
   let lunar_eclipse_visibility_regions_el = document.createElement("div");
   lunar_eclipse_visibility_regions_el.className = "moon";
   lunar_eclipse_visibility_regions_el.textContent = `Visibility Regions: ${data.moon.next_lunar_eclipse.visibility_regions}`;
-  obj.type = lunar_eclipse_visibility_regions_el.nodeName.toLocaleLowerCase();
-  obj.class = lunar_eclipse_visibility_regions_el.className;
-  obj.textContent = lunar_eclipse_visibility_regions_el.textContent;
-  list.push(obj);
-  obj = {};
-
+  
   moon_container.appendChild(moon_title_el);
   moon_container.appendChild(moonrise_el);
   moon_container.appendChild(moonset_el);
@@ -389,13 +285,107 @@ function displayApiData(data, container) {
   moon_container.appendChild(lunar_eclipse_type_el);
   moon_container.appendChild(lunar_eclipse_visibility_regions_el);
 
+  let moon_phases_container = document.createElement("div")
+
+  let moon_phases_title_el = document.createElement("h3");
+  moon_phases_title_el.className = "moon-phases";
+  moon_phases_title_el.textContent = "Moon Phases";
+
+  let first_quarter_title_el = document.createElement("h4");
+  first_quarter_title_el.className = "moon-phases";
+  first_quarter_title_el.textContent = "First Quarter";
+  
+  let first_quarter_img_el = document.createElement("img");
+  first_quarter_img_el.className = "moon";
+  first_quarter_img_el.src = "img/first-quarter.png";
+  first_quarter_img_el.alt = "First Quarter";
+  
+  let first_quarter_last_time_el = document.createElement("div");
+  first_quarter_last_time_el.className = "moon";
+  first_quarter_last_time_el.textContent = `Previous: ${data.moon_phases.first_quarter.last.datestamp} - ${data.moon_phases.first_quarter.last.days_ago} days ago`;
+  
+  let first_quarter_next_time_el = document.createElement("div");
+  first_quarter_next_time_el.className = "moon";
+  first_quarter_next_time_el.textContent = `Next: ${data.moon_phases.first_quarter.next.datestamp} ${data.moon_phases.first_quarter.next.days_ahead} days ahead`;
+  
+  let fullmoon_title_el = document.createElement("h4");
+  fullmoon_title_el.className = "moon-phases";
+  fullmoon_title_el.textContent = "Full Moon";
+  
+  let fullmoon_img_el = document.createElement("img");
+  fullmoon_img_el.className = "moon-phases";
+  fullmoon_img_el.src = "img/fullmoon.png";
+  fullmoon_img_el.alt = "Full Moon";
+  
+  let fullmoon_last_time_el = document.createElement("div");
+  fullmoon_last_time_el.className = "moon-phases";
+  fullmoon_last_time_el.textContent = `Previous: ${data.moon_phases.full_moon.last.datestamp} - ${data.moon_phases.full_moon.last.days_ago} days ago`;
+  
+  let fullmoon_next_time_el = document.createElement("div");
+  fullmoon_next_time_el.className = "moon-phases";
+  fullmoon_next_time_el.textContent = `Next: ${data.moon_phases.full_moon.next.datestamp} - ${data.moon_phases.full_moon.next.days_ahead} days ago`;
+  
+  let last_quarter_title_el = document.createElement("h4");
+  last_quarter_title_el.className = "moon-phases";
+  last_quarter_title_el.textContent = "Last Quarter";
+  
+  let last_quarter_img_el = document.createElement("img");
+  last_quarter_img_el.className = "moon-phases";
+  last_quarter_img_el.src = "img/last-quarter.png";
+  last_quarter_img_el.alt = "Last Quarter";
+  
+  let last_quarter_last_time_el = document.createElement("div");
+  last_quarter_last_time_el.className = "moon-phases";
+  last_quarter_last_time_el.textContent = `Previous: ${data.moon_phases.last_quarter.last.datestamp} - ${data.moon_phases.last_quarter.last.days_ago} days ago`;
+  
+  let last_quarter_next_time_el = document.createElement("div");
+  last_quarter_next_time_el.className = "moon-phases";
+  last_quarter_next_time_el.textContent = `Next: ${data.moon_phases.last_quarter.next.datestamp} - ${data.moon_phases.last_quarter.next.days_ahead} days ahead`;
+  
+  let new_moon_title_el = document.createElement("h4");
+  new_moon_title_el.className = "moon-phases";
+  new_moon_title_el.textContent = "New Moon";
+  
+  let new_moon_img_el = document.createElement("img");
+  new_moon_img_el.className = "moon-phases";
+  new_moon_img_el.src = "img/new-moon.png";
+  new_moon_img_el.alt = "New Moon";
+  
+  let new_moon_last_time_el = document.createElement("div");
+  new_moon_last_time_el.className = "moon-phases";
+  new_moon_last_time_el.textContent = `Previous: ${data.moon_phases.new_moon.last.datestamp} - ${data.moon_phases.new_moon.last.days_ago} days ago`;
+  
+  let new_moon_next_time_el = document.createElement("div");
+  new_moon_next_time_el.className = "moon-phases";
+  new_moon_next_time_el.textContent = `Next: ${data.moon_phases.new_moon.next.datestamp} - ${data.moon_phases.new_moon.next.days_ahead} days ahead`;
+  
+  moon_phases_container.appendChild(moon_phases_title_el)
+  moon_phases_container.appendChild(first_quarter_title_el)
+  moon_phases_container.appendChild(first_quarter_img_el)
+  moon_phases_container.appendChild(first_quarter_last_time_el)
+  moon_phases_container.appendChild(first_quarter_next_time_el)
+
+  moon_phases_container.appendChild(fullmoon_title_el)
+  moon_phases_container.appendChild(fullmoon_img_el)
+  moon_phases_container.appendChild(fullmoon_last_time_el)
+  moon_phases_container.appendChild(fullmoon_next_time_el)
+
+  moon_phases_container.appendChild(last_quarter_title_el)
+  moon_phases_container.appendChild(last_quarter_img_el)
+  moon_phases_container.appendChild(last_quarter_last_time_el)
+  moon_phases_container.appendChild(last_quarter_next_time_el)
+
+  moon_phases_container.appendChild(new_moon_title_el)
+  moon_phases_container.appendChild(new_moon_img_el)
+  moon_phases_container.appendChild(new_moon_last_time_el)
+  moon_phases_container.appendChild(new_moon_next_time_el)
+
   contDiv.appendChild(sun_container);
   contDiv.appendChild(moon_container);
+  contDiv.appendChild(moon_phases_container);
 
   container.appendChild(date_el);
   container.appendChild(contDiv);
-
-  localStorage.setItem("luminaries", JSON.stringify(list));
 }
 
 function displayFeasts(obj, container) {
@@ -455,33 +445,6 @@ function displayDailyEvents(container) {
   container.appendChild(contDiv);
 }
 
-function displayLocalLuminaries(list, cont) {
-  let sun_container = document.createElement("div");
-
-  let moon_container = document.createElement("div");
-
-  let container = document.createElement("div");
-  container.className = "side-bar-main-content luminaries";
-
-  list.forEach((item) => {
-    let element = document.createElement(item.type);
-    element.className = item.class;
-    element.textContent = item.textContent;
-
-    if (item.class == "side-bar-main-content luminaries date") {
-      cont.appendChild(element);
-    } else if (item.class == "sun") {
-      sun_container.appendChild(element);
-    } else if (item.class == "moon") {
-      moon_container.appendChild(element);
-    }
-  });
-
-  container.appendChild(sun_container);
-  container.appendChild(moon_container);
-  cont.appendChild(container);
-}
-
 export {
   daySeeker,
   detailsPopUp,
@@ -490,5 +453,5 @@ export {
   displayMoonPhases,
   displayFeasts,
   displayDailyEvents,
-  displayLocalLuminaries,
+  displayApiData,
 };

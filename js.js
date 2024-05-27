@@ -6,7 +6,7 @@ import {
   displayMoonPhases,
   displayFeasts,
   displayDailyEvents,
-  displayLocalLuminaries,
+  displayApiData,
 } from "./utils/functions.js";
 import { feastsObj } from "../utils/objects.js";
 
@@ -29,7 +29,8 @@ const tabs = document.querySelectorAll(".tab");
 const feasts_el = document.querySelector("#events-container");
 const milliseconds_per_day = 86400000;
 const milliseconds_per_year = 31449600000;
-const year_zero = 1679457600757 - 3600000 * 12; //22 Mar 2023 - 6am (1679457600757)
+const ms_per_hour = 3600000;
+const year_zero = 1679457600757 - ms_per_hour*12; //22 Mar 2023 - 6am (1679457600757)
 const real_days = [];
 const date = new Date();
 
@@ -59,7 +60,7 @@ daySeeker(real_days, year_zero);
 
 const current_day = document.querySelector(".current-day");
 const current_month_title =
-  current_day.parentElement.parentElement.firstChild.nextSibling.textContent;
+current_day.parentElement.parentElement.firstChild.nextSibling.textContent;
 const current_month = current_day.parentElement.parentElement;
 current_month.scrollIntoView({ behavior: "smooth", block: "center" });
 sidebar_month_title.textContent = `Day ${current_day.textContent} of ${current_month_title}`;
@@ -297,12 +298,12 @@ if (window.innerWidth < 768) {
   });
 }
 
-let loaded = true;
+let isNew = true;
 
-if (!localStorage.loaded) {
-  localStorage.setItem("boolean", JSON.stringify(loaded));
+if (!localStorage.refreshedTime) {
+  localStorage.setItem("isNew", JSON.stringify(isNew));
 } else {
-  loaded = JSON.parse(localStorage.boolean);
+  isNew = JSON.parse(localStorage.isNew);
 }
 
 tabs.forEach((tab, index, arr) => {
@@ -323,15 +324,21 @@ tabs.forEach((tab, index, arr) => {
       if (content.length > 0) {
         content.forEach((item) => item.remove());
       }
+      let date = new Date();
+      let current_time = date.getTime();
+      let last_refreshed_time = parseInt(localStorage.refreshedTime);
 
-      if (date.getTime() > parseInt(localStorage.loaded) + 600000 || loaded) {
+      if (current_time > last_refreshed_time + ms_per_hour || isNew) {
+        let loader = document.createElement("img");
+        loader.src = "img/loader.png";
+        loader.classList.add("loader");
+        feasts_el.appendChild(loader);
+
         displayMoonPhases(feasts_el);
-        localStorage.setItem("loaded", date.getTime());
-        loaded = false;
-        localStorage.setItem("boolean", JSON.stringify(loaded));
+        isNew = false;
+        localStorage.setItem("isNew", JSON.stringify(isNew));
       } else {
-        console.log("loading local");
-        displayLocalLuminaries(JSON.parse(localStorage.luminaries), feasts_el);
+        displayApiData(JSON.parse(localStorage.ApiData), feasts_el);
       }
     }
 

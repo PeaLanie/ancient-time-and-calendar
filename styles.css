@@ -387,7 +387,7 @@ h1 {
   gap: 1rem;
   width: 100%;
   align-items: center;
-  max-height: calc(100vh - 247px);
+  height: calc(100vh - 247px);
   overflow-y: auto;
 }
 #events-container .feast-item {
@@ -464,34 +464,29 @@ h1 {
 .daily-events {
   padding-bottom: 1rem;
 }
-.sabbaths-count {
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  border: 2px dashed var(--english-violet);
-  margin-bottom: 1rem;
+
+
+
+
+.loader {
+  margin-top: 3rem;
+  -webkit-animation: spin 1.5s linear infinite; /* Safari */
+  animation: spin 1.5s linear infinite;
 }
-.upcoming-events {
-  font-weight: normal;
-  text-align: center;
-  font-style: italic;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  color: var(--honolulu-blue);
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
 }
-.no-upcoming-events {
-  text-transform: uppercase;
-  font-style: italic;
-  font-weight: normal;
-  font-size: 0.8rem;
-  text-align: center;
-  padding-top: 1rem;
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
-.events-container {
-  padding: 1rem;
-}
-.events-container > li {
-  padding-bottom: 1rem;
-}
+
+
+
 
 @media screen and (max-width: 1440px) {
   .wrapper {

@@ -1,4 +1,3 @@
-import { displayLocalLuminaries } from "../utils/functions.js";
 
 export const getMoonPhases = async (lat, lon, container) => {
   const url = `https://moon-phase.p.rapidapi.com/advanced?lat=${lat}&lon=${lon}`;
@@ -25,7 +24,7 @@ export const getMoonPhases = async (lat, lon, container) => {
 
     error_container.appendChild(error_el);
 
-    if (localStorage.luminaries) {
+    if (localStorage.ApiData) {
       let btn = document.createElement("button");
       btn.className = "show-btn";
       btn.textContent = "Get Previous Results";
@@ -40,7 +39,7 @@ export const getMoonPhases = async (lat, lon, container) => {
       list.forEach((element) => {
         element.remove();
       });
-      displayLocalLuminaries(JSON.parse(localStorage.luminaries), container);
+      displayApiData(JSON.parse(localStorage.ApiData), container);
     });
   }
 };
