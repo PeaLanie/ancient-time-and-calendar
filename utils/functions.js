@@ -144,13 +144,19 @@ if (!localStorage.apiCount || !localStorage.date || localStorage.date != day) {
   apiCount = localStorage.apiCount;
 }
 
+if (navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition(pos => {
+  })
+}
+
 function displayMoonPhases(el) {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition((pos) => {
       let lat = pos.coords.latitude;
       let lon = pos.coords.longitude;
-
+      console.log(pos)
       getMoonPhases(lat, lon, el).then((data) => {
+        
         document.querySelector(".loader").remove()
         if (data) {
           let date =  new Date();
@@ -177,7 +183,8 @@ function displayApiData(data, container) {
 
   let date_el = document.createElement("div");
   date_el.className = "side-bar-main-content luminaries date";
-  date_el.textContent = `Today: ${data.datestamp}`;
+  let string = data.datestamp;
+  date_el.textContent = `Last updated: ${string.substring(0, string.length - 6)}`;
 
   let sun_container = document.createElement("div");
 
@@ -323,7 +330,7 @@ function displayApiData(data, container) {
   
   let fullmoon_next_time_el = document.createElement("div");
   fullmoon_next_time_el.className = "moon-phases";
-  fullmoon_next_time_el.textContent = `Next: ${data.moon_phases.full_moon.next.datestamp} - ${data.moon_phases.full_moon.next.days_ahead} days ago`;
+  fullmoon_next_time_el.textContent = `Next: ${data.moon_phases.full_moon.next.datestamp} - ${data.moon_phases.full_moon.next.days_ahead} days ahead`;
   
   let last_quarter_title_el = document.createElement("h4");
   last_quarter_title_el.className = "moon-phases";

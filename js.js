@@ -30,7 +30,7 @@ const feasts_el = document.querySelector("#events-container");
 const milliseconds_per_day = 86400000;
 const milliseconds_per_year = 31449600000;
 const ms_per_hour = 3600000;
-const year_zero = 1679457600757 - ms_per_hour*12; //22 Mar 2023 - 6am (1679457600757)
+const year_zero = 1679457600757 + milliseconds_per_day*7 - ms_per_hour*12; //22 Mar 2023 - 6am (1679457600757)
 const real_days = [];
 const date = new Date();
 
