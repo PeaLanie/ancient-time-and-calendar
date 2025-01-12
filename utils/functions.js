@@ -74,18 +74,27 @@ function detailsPopUp(date, targetEl) {
   parentEl.appendChild(container);
 }
 
-function showModernCalendar(day, index, start, mpd, mpy) {
+function showModernCalendar(
+  day,
+  index,
+  start,
+  milliseconds_per_day,
+  milliseconds_per_year
+) {
   const date = new Date();
   let sec = date.getTime();
   let milliseconds_from_year_zero = sec - start;
-  let number_of_days_from_year_zero = milliseconds_from_year_zero / mpd;
+  let number_of_days_from_year_zero =
+    milliseconds_from_year_zero / milliseconds_per_day;
   let number_of_years_from_year_zero = Math.floor(
-    milliseconds_from_year_zero / mpy
+    milliseconds_from_year_zero / milliseconds_per_year
   );
   let milliseconds_count_in_year =
     (number_of_days_from_year_zero / 364 - number_of_years_from_year_zero) *
-    mpy;
-  let days_count_in_year = Math.ceil(milliseconds_count_in_year / mpd);
+    milliseconds_per_year;
+  let days_count_in_year = Math.ceil(
+    milliseconds_count_in_year / milliseconds_per_day
+  );
   let target_day = index + 1;
   let num_of_days_from_current_day;
   let milliseconds;
@@ -94,7 +103,7 @@ function showModernCalendar(day, index, start, mpd, mpy) {
   let dateEl;
   if (target_day < days_count_in_year) {
     num_of_days_from_current_day = days_count_in_year - target_day;
-    milliseconds = sec - num_of_days_from_current_day * mpd;
+    milliseconds = sec - num_of_days_from_current_day * milliseconds_per_day;
     ndate = new Date(milliseconds);
     fullDate = `${ndate.getDate()}-${
       ndate.getMonth() + 1
@@ -106,7 +115,7 @@ function showModernCalendar(day, index, start, mpd, mpy) {
     day.appendChild(dateEl);
   } else if (target_day > days_count_in_year) {
     num_of_days_from_current_day = target_day - days_count_in_year;
-    milliseconds = sec + num_of_days_from_current_day * mpd;
+    milliseconds = sec + num_of_days_from_current_day * milliseconds_per_day;
     ndate = new Date(milliseconds);
     fullDate = `${ndate.getDate()}-${
       ndate.getMonth() + 1
@@ -154,7 +163,7 @@ function displayMoonPhases(el) {
     navigator.geolocation.getCurrentPosition((pos) => {
       let lat = pos.coords.latitude;
       let lon = pos.coords.longitude;
-      console.log(pos)
+      
       getMoonPhases(lat, lon, el).then((data) => {
         
         document.querySelector(".loader").remove()
@@ -405,34 +414,34 @@ function displayFeasts(obj, container) {
     if (item.name) {
       el = document.createElement("h3");
       el.classList.add("feast-name");
-      el.textContent = `${item.position}. ${item.name}`;
+      el.innerHTML = `${item.position}. <a href="${item.url}" target="_blank">${item.name}</a>`;
       contDiv.appendChild(el);
     }
 
     if (item.alt_name) {
       el = document.createElement("h4");
       el.classList.add("feast-alt-name");
-      el.textContent = `also called: ${item.alt_name}`;
+      el.textContent = `Also called: ${item.alt_name}`;
       contDiv.appendChild(el);
     }
 
     if (item.description) {
-      el = document.createElement("h3");
+      el = document.createElement("p");
       el.classList.add("feast-description");
-      el.textContent = item.name;
-      contDiv.appendChild(el);
-    }
-
-    if (item.url) {
-      el = document.createElement("div");
-      el.innerHTML = `For more info: <a href="${item.url}" target="_blank">${item.name}</a>`;
+      el.textContent = item.description;
       contDiv.appendChild(el);
     }
 
     if (item.day) {
       el = document.createElement("div");
-      el.classList.add("feast-date");
+      el.classList.add("ancient-calendar")
       el.textContent = `Ancient Calendar: Day ${item.day} ${item.month}`;
+      contDiv.appendChild(el);
+    }
+
+    if (item.modernDate) {
+      el = document.createElement("div");
+      el.textContent = `Gregorian Calendar: ${item.modernDate}`;
       contDiv.appendChild(el);
     }
 
@@ -452,6 +461,25 @@ function displayDailyEvents(container) {
   container.appendChild(contDiv);
 }
 
+function setFeasts(yearZero, msPerDay, feastDay) {
+  const daysOfYear = 364
+  const date = new Date();
+  const sec = date.getTime();
+
+  const timeFromYearZero = sec - yearZero;
+  const currentDay = Math.ceil(timeFromYearZero / msPerDay % daysOfYear);
+
+  const daysToFeast =
+    currentDay > feastDay
+      ? daysOfYear - currentDay + feastDay
+      : feastDay - currentDay;
+
+  const timeToFeast = daysToFeast * msPerDay;
+  const feastDate = new Date(sec + timeToFeast);
+
+  return `${feastDate.getDate()}-${feastDate.getMonth() + 1}-${feastDate.getFullYear()}`;
+}
+
 export {
   daySeeker,
   detailsPopUp,
@@ -461,4 +489,5 @@ export {
   displayFeasts,
   displayDailyEvents,
   displayApiData,
+  setFeasts,
 };

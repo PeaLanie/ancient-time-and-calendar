@@ -7,6 +7,7 @@ import {
   displayFeasts,
   displayDailyEvents,
   displayApiData,
+  setFeasts,
 } from "./utils/functions.js";
 import { feastsObj } from "../utils/objects.js";
 
@@ -30,9 +31,10 @@ const feasts_el = document.querySelector("#events-container");
 const milliseconds_per_day = 86400000;
 const milliseconds_per_year = 31449600000;
 const ms_per_hour = 3600000;
-const year_zero = 1679457600757 - ms_per_hour*12; //22 Mar 2023 - 6am (1679457600757)
+const year_zero = 1678204800757; //Tue 07 Mar 2023 18:00:00 GMT+0200 (South Africa Standard Time)
 const real_days = [];
-const date = new Date();
+const date = new Date(); // Today: 1736352000757
+
 
 gregorian_date_el.textContent = `${date.getDate()}-${
   date.getMonth() + 1
@@ -307,7 +309,7 @@ if (!localStorage.refreshedTime) {
 }
 
 tabs.forEach((tab, index, arr) => {
-  tab.addEventListener("click", (e) => {
+  tab.addEventListener("click", () => {
     let content = document.querySelectorAll(".side-bar-main-content");
 
     if (tab.id == "daily-events" && !tab.classList.contains("active")) {
@@ -319,8 +321,9 @@ tabs.forEach((tab, index, arr) => {
       if (content.length > 0) {
         content.forEach((item) => item.remove());
       }
+      
       displayFeasts(feastsObj, feasts_el);
-    } else if (tab.id == "luminaries" && !tab.classList.contains("active")) {
+    } else if (tab.id !== "luminaries" && !tab.classList.contains("active")) {
       if (content.length > 0) {
         content.forEach((item) => item.remove());
       }
@@ -331,7 +334,7 @@ tabs.forEach((tab, index, arr) => {
       if (current_time > last_refreshed_time + ms_per_hour || isNew) {
         let loader = document.createElement("img");
         loader.src = "img/loader.png";
-        loader.classList.add("loader");
+        loader.className = "side-bar-main-content loader";
         feasts_el.appendChild(loader);
 
         displayMoonPhases(feasts_el);
@@ -342,11 +345,15 @@ tabs.forEach((tab, index, arr) => {
       }
     }
 
+    
     arr.forEach((btn) => {
-      btn.classList.remove("active");
+      if (tab.id !== "luminaries") btn.classList.remove("active");
     });
+
     tab.classList.add("active");
   });
 });
 
 displayDailyEvents(feasts_el);
+
+export { year_zero, milliseconds_per_day };

@@ -362,7 +362,9 @@ h1 {
 }
 .side-bar-tabs {
   display: flex;
-  background-color: var(--lavender-pink);
+  background-color: var(--english-violet);
+  color: var(--white);
+  font-weight: bold;
 }
 .side-bar-tabs li {
   list-style: none;
@@ -376,9 +378,14 @@ h1 {
   background-color: var(--hover-effect);
   color: var(--white);
 }
+#luminaries {
+  background-color: #808080;
+  color: black;
+  cursor: default;
+}
 .side-bar-tabs li.active {
-  background-color: var(--english-violet);
-  color: var(--white);
+  background-color: var(--lavender-pink);
+  color: black;
 }
 
 .side-bar-main #events-container {
@@ -397,7 +404,6 @@ h1 {
 }
 #events-container h3 {
   text-transform: uppercase;
-  text-align: center;
 }
 #events-container .feast-alt-name {
   padding-top: 0.3rem;
@@ -440,6 +446,9 @@ h1 {
   background-color: var(--lavender-pink);
   color: black;
   cursor: pointer;
+}
+.side-bar-main-content.feast-item .ancient-calendar {
+  margin-top: 1rem;
 }
 
 @keyframes fade-up {
